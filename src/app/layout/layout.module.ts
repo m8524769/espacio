@@ -22,7 +22,7 @@ import { ContainerComponent } from './container/container.component';
   declarations: [
     LayoutComponent,
     SidebarComponent,
-    ContainerComponent
+    ContainerComponent,
   ],
   imports: [
     CommonModule,

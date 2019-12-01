@@ -2,12 +2,17 @@
   <button mat-button (click)="sidebar.toggle()">
     <mat-icon>{{ sidebar.opened ? 'arrow_back' : 'menu' }}</mat-icon>
   </button>
-  <button mat-button *ngIf="sidebar.opened">
-    <mat-icon>library_books</mat-icon>
-  </button>
-  <button mat-button *ngIf="sidebar.opened">
-    <mat-icon>settings</mat-icon>
-  </button>
+  <div *ngIf="sidebar.opened">
+    <button mat-button>
+      <mat-icon>library_books</mat-icon>
+    </button>
+    <button mat-button>
+      <mat-icon>brightness_2</mat-icon>
+    </button>
+    <button mat-button>
+      <mat-icon>settings</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
 
 <mat-sidenav-container>
