@@ -1,0 +1,34 @@
+<mat-toolbar style="position: fixed; z-index: 1000; top: 0;">
+  <button mat-button (click)="sidebar.toggle()">
+    <mat-icon>{{ sidebar.opened ? 'arrow_back' : 'menu' }}</mat-icon>
+  </button>
+  <button mat-button *ngIf="sidebar.opened">
+    <mat-icon>library_books</mat-icon>
+  </button>
+  <button mat-button *ngIf="sidebar.opened">
+    <mat-icon>settings</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav
+    #sidebar
+    fixedInViewport="true"
+    mode="side"
+    style="width: 20rem;"
+  >
+    <mat-toolbar></mat-toolbar>
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content
+    style="
+      display: flex;
+      justify-content: center;
+      margin-top: 64px;
+      height: calc(100vh - 64px);
+    "
+  >
+    <app-container></app-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

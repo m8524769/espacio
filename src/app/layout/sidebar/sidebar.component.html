@@ -1,0 +1,43 @@
+<mat-toolbar style="display: flex; justify-content: space-between;">
+  <button mat-button (click)="prevChapter()">
+    <mat-icon>arrow_back_ios</mat-icon>
+    Prev Chapter
+  </button>
+  <button mat-button (click)="nextChapter()">
+    Next Chapter
+    <mat-icon>arrow_forward_ios</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-accordion *ngIf="navigation">
+  <mat-expansion-panel
+    *ngFor="let chapter of navigation.toc"
+    [hideToggle]="chapter.subitems.length===0"
+    [disabled]="chapter.subitems.length===0"
+  >
+    <mat-expansion-panel-header>
+      <button
+        mat-button
+        class="nav-item-button"
+        (click)="enterChapter(chapter.href)"
+        [matTooltip]="chapter.label"
+        matTooltipPosition="right"
+      >
+        {{ chapter.label }}
+      </button>
+    </mat-expansion-panel-header>
+    <mat-nav-list *ngFor="let section of chapter.subitems">
+      <button
+        mat-button
+        class="nav-item-button"
+        (click)="enterSection(section.href)"
+        [matTooltip]="section.label"
+        matTooltipPosition="right"
+      >
+        {{ section.label }}
+      </button>
+    </mat-nav-list>
+  </mat-expansion-panel>
+
+  <ng-content></ng-content>
+</mat-accordion>
