@@ -10,17 +10,21 @@ import Navigation from 'epubjs/types/navigation';
 })
 export class SidebarComponent implements OnInit {
   navigation: Navigation;
+  currentHref: string;
 
   constructor(
     private epubService: EpubService
-  ) {
-    epubService.book.loaded.navigation.then(navigation => {
+  ) { }
+
+  ngOnInit() {
+    this.epubService.book.loaded.navigation.then(navigation => {
       console.log(navigation)
       this.navigation = navigation;
     });
-  }
-
-  ngOnInit() {
+    this.epubService.currentSection$.subscribe(section => {
+      console.log(section.href)
+      this.currentHref = section.href;
+    })
   }
 
   enterSection(href: string) {

@@ -2,6 +2,11 @@
   <button mat-button (click)="sidebar.toggle()">
     <mat-icon>{{ sidebar.opened ? 'arrow_back' : 'menu' }}</mat-icon>
   </button>
+
+  <!-- <h1 *ngIf="!sidebar.opened" style="font-family: 'Crimson Text'; font-style: italic; font-weight: bold; font-size: larger; padding-top: 5px;">
+    Espacio Reader
+  </h1> -->
+
   <div *ngIf="sidebar.opened">
     <button mat-button>
       <mat-icon>library_books</mat-icon>
@@ -20,7 +25,7 @@
     #sidebar
     fixedInViewport="true"
     mode="side"
-    style="width: 20rem;"
+    style="width: 20rem; border-right: 0;"
   >
     <mat-toolbar></mat-toolbar>
     <app-sidebar></app-sidebar>

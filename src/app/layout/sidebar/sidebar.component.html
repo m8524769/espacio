@@ -1,11 +1,11 @@
-<mat-toolbar style="display: flex; justify-content: space-between;">
+<mat-toolbar style="display: flex; justify-content: center;">
   <button mat-button (click)="prevChapter()">
     <mat-icon>arrow_back_ios</mat-icon>
-    Prev Chapter
+    <span>Prev Chapter</span>
   </button>
   <button mat-button (click)="nextChapter()">
-    Next Chapter
-    <mat-icon>arrow_forward_ios</mat-icon>
+    <span>Next Chapter</span>
+    <mat-icon style="margin: 0 -6px 0 6px;">arrow_forward_ios</mat-icon>
   </button>
 </mat-toolbar>
 
@@ -14,6 +14,7 @@
     *ngFor="let chapter of navigation.toc"
     [hideToggle]="chapter.subitems.length===0"
     [disabled]="chapter.subitems.length===0"
+    style="box-shadow: none;"
   >
     <mat-expansion-panel-header>
       <button
@@ -22,6 +23,7 @@
         (click)="enterSection(chapter.href)"
         [matTooltip]="chapter.label"
         matTooltipPosition="right"
+        [disabled]="chapter.href===currentHref"
       >
         {{ chapter.label }}
       </button>
@@ -33,6 +35,7 @@
         (click)="enterSection(section.href)"
         [matTooltip]="section.label"
         matTooltipPosition="right"
+        [disabled]="section.href===currentHref"
       >
         {{ section.label }}
       </button>
