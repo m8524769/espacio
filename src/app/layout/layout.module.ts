@@ -17,7 +17,6 @@ import {
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContainerComponent } from './container/container.component';
-import { EpubService } from '../shared/epub.service';
 
 @NgModule({
   declarations: [

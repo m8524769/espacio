@@ -20,8 +20,12 @@ export class ContainerComponent implements OnInit {
 
   ngOnInit() {
     this.epubService.rendition = this.epubService.book.renderTo('viewer', {
-      flow: 'scrolled-doc',
-      width: '64rem',
+      // flow: 'scrolled-doc',
+      // width: '64rem',
+
+      flow: 'paginated',
+      height: '92vh',
+      width: '96rem',
     });
 
     this.epubService.book.loaded.navigation.then(navigation => {

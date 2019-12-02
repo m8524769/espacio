@@ -13,8 +13,8 @@ export class EpubService {
 
   constructor() {
     // this.loadBook('../../assets/Kubernetes_in_Action.epub');
-    // this.loadBook('../../assets/thekubernetesbook.epub');
-    this.loadBook('../../assets/valentin-hauy.epub');
+    this.loadBook('../../assets/thekubernetesbook.epub');
+    // this.loadBook('../../assets/valentin-hauy.epub');
     this.currentSection$ = new Subject();
   }
 
