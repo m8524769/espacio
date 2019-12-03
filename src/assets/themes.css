@@ -1,0 +1,9 @@
+.default {
+	background: inherit;
+	color: inherit;
+}
+
+.dark {
+	background: #000;
+	color: #fff
+}

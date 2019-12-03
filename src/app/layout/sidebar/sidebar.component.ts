@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { EpubService } from 'src/app/shared/epub.service';
 import Navigation, { NavItem } from 'epubjs/types/navigation';

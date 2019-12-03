@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EpubService } from 'src/app/shared/epub.service';
-import { Rendition } from 'epubjs';
-import { NavItem } from 'epubjs/types/navigation';
-import Section from 'epubjs/types/section';
+import { SettingsService } from 'src/app/shared/settings.service';
 
 @Component({
   selector: 'app-container',
@@ -11,11 +9,10 @@ import Section from 'epubjs/types/section';
   styleUrls: ['./container.component.sass']
 })
 export class ContainerComponent implements OnInit {
-  // prevNav: NavItem;
-  // nextNav: NavItem;
 
   constructor(
-    private epubService: EpubService
+    private epubService: EpubService,
+    private settingsService: SettingsService,
   ) { }
 
   ngOnInit() {
@@ -29,9 +26,25 @@ export class ContainerComponent implements OnInit {
       // height: '92vh',
     });
 
+    // Set Style
+    // Font-Family
+    this.settingsService.fontFamily$.subscribe(fontFamily => {
+      this.epubService.rendition.themes.font(fontFamily);
+    });
+    // Font-Size
+    this.settingsService.fontSize$.subscribe(fontSize => {
+      this.epubService.rendition.themes.fontSize(fontSize);
+    });
+    // Theme
+    this.settingsService.theme$.subscribe(theme => {
+      this.epubService.rendition.themes.register(theme, '/assets/themes.css');
+      this.epubService.rendition.themes.select(theme);
+    });
+
+    // Display initial page
     this.epubService.book.loaded.navigation.then(navigation => {
       this.epubService.rendition.display(navigation.toc[0].href);
-    })
+    });
 
     this.epubService.rendition.on('relocated', location => {
       this.epubService.updateCurrentLocation(location);
@@ -40,23 +53,11 @@ export class ContainerComponent implements OnInit {
     this.epubService.rendition.on('rendered', section => {
       this.epubService.updateCurrentSection(section);
 
-      // const prevSection: Section = section.prev();
-      // const nextSection: Section = section.next();
-      // console.log(epubService.book.navigation)
-      // console.log(prevSection)
-      // console.log(epubService.book.spine)
-      // if (prevSection) {
-      //   console.log(prevSection.href)
-      //   this.prevNav = epubService.book.navigation.get(prevSection.href);
-      //   this.prevNav = epubService.book.spine.get(prevSection.href);
-      // }
-      // if (nextSection) {
-      //   console.log(section.next())
-      //   this.nextNav = epubService.book.navigation.get(nextSection.href);
-      // }
-      // console.log(this.prevNav)
-      // console.log(this.nextNav)
-    })
+      const navItem = this.epubService.book.navigation.get(section.href)
+      if (navItem && navItem.href === section.href) {
+        this.epubService.updateCurrentNavItem(navItem);
+      }
+    });
   }
 
 }
