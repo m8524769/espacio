@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { SettingsComponent } from './settings/settings.component';
 
 @Component({
   selector: 'app-layout',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private bottomSheet: MatBottomSheet,
+  ) { }
 
   ngOnInit() {
+  }
+
+  openSettings(): void {
+    this.bottomSheet.open(SettingsComponent);
   }
 
 }

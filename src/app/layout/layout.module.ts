@@ -12,17 +12,22 @@ import {
   MatDividerModule,
   MatTooltipModule,
   MatCardModule,
+  MatBottomSheetModule,
+  MatInputModule,
+  MatSelectModule,
 } from '@angular/material';
 
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContainerComponent } from './container/container.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     SidebarComponent,
     ContainerComponent,
+    SettingsComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +41,9 @@ import { ContainerComponent } from './container/container.component';
     MatDividerModule,
     MatTooltipModule,
     MatCardModule,
+    MatBottomSheetModule,
+    MatInputModule,
+    MatSelectModule,
   ]
 })
 export class LayoutModule { }

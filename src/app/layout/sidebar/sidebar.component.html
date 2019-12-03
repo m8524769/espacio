@@ -29,7 +29,6 @@
         (click)="enterSection(chapter)"
         [matTooltip]="chapter.label"
         matTooltipPosition="right"
-        [disabled]="chapter.href===currentNavItem?.href || chapter.href===currentNavItem?.parent"
       >
         {{ chapter.label }}
       </button>
@@ -41,7 +40,6 @@
         (click)="enterSection(section)"
         [matTooltip]="section.label"
         matTooltipPosition="right"
-        [disabled]="section.href===currentNavItem?.href"
       >
         {{ section.label }}
       </button>

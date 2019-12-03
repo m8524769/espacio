@@ -27,6 +27,11 @@ export class ContainerComponent implements OnInit {
     });
 
     // Set Style
+    // Theme
+    this.settingsService.theme$.subscribe(theme => {
+      this.epubService.rendition.themes.register(theme, '/assets/themes.css');
+      this.epubService.rendition.themes.select(theme);
+    });
     // Font-Family
     this.settingsService.fontFamily$.subscribe(fontFamily => {
       this.epubService.rendition.themes.font(fontFamily);
@@ -35,10 +40,15 @@ export class ContainerComponent implements OnInit {
     this.settingsService.fontSize$.subscribe(fontSize => {
       this.epubService.rendition.themes.fontSize(fontSize);
     });
-    // Theme
-    this.settingsService.theme$.subscribe(theme => {
-      this.epubService.rendition.themes.register(theme, '/assets/themes.css');
-      this.epubService.rendition.themes.select(theme);
+    // Page-Width
+    this.settingsService.pageWidth$.subscribe(pageWidth => {
+      // Todo
+    })
+    // Default CSS
+    this.epubService.rendition.themes.default({
+      '::selection': {
+        'background-color': 'rgba(0, 0, 0, 0.15)',
+      }
     });
 
     // Display initial page
