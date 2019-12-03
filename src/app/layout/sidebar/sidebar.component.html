@@ -1,9 +1,15 @@
 <mat-toolbar style="display: flex; justify-content: center;">
-  <button mat-button (click)="prevChapter()" [disabled]="currentSection?.index===0">
+  <button mat-button
+    (click)="prevChapter()"
+    [disabled]="currentSection?.index===0"
+  >
     <mat-icon>arrow_back_ios</mat-icon>
     <span>Prev Chapter</span>
   </button>
-  <button mat-button (click)="nextChapter()" [disabled]="currentSection?.index>=spine?.length-1">
+  <button mat-button
+    (click)="nextChapter()"
+    [disabled]="currentSection?.index>=spine?.length-1"
+  >
     <span>Next Chapter</span>
     <mat-icon style="margin: 0 -6px 0 6px;">arrow_forward_ios</mat-icon>
   </button>
@@ -20,10 +26,10 @@
       <button
         mat-button
         class="nav-item-button"
-        (click)="enterSection(chapter.href)"
+        (click)="enterSection(chapter)"
         [matTooltip]="chapter.label"
         matTooltipPosition="right"
-        [disabled]="chapter.href===currentSection?.href"
+        [disabled]="chapter.href===currentNavItem?.href || chapter.href===currentNavItem?.parent"
       >
         {{ chapter.label }}
       </button>
@@ -32,10 +38,10 @@
       <button
         mat-button
         class="nav-subitem-button"
-        (click)="enterSection(section.href)"
+        (click)="enterSection(section)"
         [matTooltip]="section.label"
         matTooltipPosition="right"
-        [disabled]="section.href===currentSection?.href"
+        [disabled]="section.href===currentNavItem?.href"
       >
         {{ section.label }}
       </button>

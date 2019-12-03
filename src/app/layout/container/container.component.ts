@@ -20,12 +20,13 @@ export class ContainerComponent implements OnInit {
 
   ngOnInit() {
     this.epubService.rendition = this.epubService.book.renderTo('viewer', {
-      // flow: 'scrolled-doc',
-      // width: '64rem',
-
-      flow: 'paginated',
+      flow: 'scrolled-doc',
+      width: '64rem',
       height: '92vh',
-      width: '96rem',
+
+      // flow: 'paginated',
+      // width: '96rem',
+      // height: '92vh',
     });
 
     this.epubService.book.loaded.navigation.then(navigation => {
@@ -33,7 +34,7 @@ export class ContainerComponent implements OnInit {
     })
 
     this.epubService.rendition.on('relocated', location => {
-      // console.log(location);
+      this.epubService.updateCurrentLocation(location);
     });
 
     this.epubService.rendition.on('rendered', section => {
