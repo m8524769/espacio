@@ -11,6 +11,7 @@ import { SettingsService } from '../shared/settings.service';
 })
 export class LayoutComponent implements OnInit {
   isDarkMode: boolean;
+  isHeaderHovered: boolean;
 
   constructor(
     private epubService: EpubService,

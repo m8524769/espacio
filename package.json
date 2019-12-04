@@ -1,6 +1,6 @@
 {
-  "name": "htref",
-  "version": "0.0.0",
+  "name": "espacio",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
