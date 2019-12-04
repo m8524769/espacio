@@ -5,6 +5,8 @@ export interface Settings {
   theme?: string;
   fontFamily?: string;
   fontSize?: string;
+  fontWeight?: string;
+  lineHeight?: string;
   pageWidth?: string;
 }
 
@@ -15,6 +17,8 @@ export class SettingsService {
   theme$: BehaviorSubject<string>;
   fontFamily$: BehaviorSubject<string>;
   fontSize$: BehaviorSubject<string>;
+  fontWeight$: BehaviorSubject<string>;
+  lineHeight$: BehaviorSubject<string>;
   pageWidth$: BehaviorSubject<string>;
 
   constructor() {
@@ -27,7 +31,9 @@ export class SettingsService {
     const defaultSettings: Settings = {
       theme: 'default',
       fontFamily: 'inherit',
-      fontSize: 'inherit',
+      fontSize: 'medium',
+      fontWeight: 'normal',
+      lineHeight: 'normal',
       pageWidth: '64rem',
     };
 
@@ -40,6 +46,8 @@ export class SettingsService {
     this.theme$ = new BehaviorSubject(settings.theme);
     this.fontFamily$ = new BehaviorSubject(settings.fontFamily);
     this.fontSize$ = new BehaviorSubject(settings.fontSize);
+    this.fontWeight$ = new BehaviorSubject(settings.fontWeight);
+    this.lineHeight$ = new BehaviorSubject(settings.lineHeight);
     this.pageWidth$ = new BehaviorSubject(settings.pageWidth);
   }
 
@@ -53,6 +61,14 @@ export class SettingsService {
 
   changeFontSize(fontSize: string) {
     this.fontSize$.next(fontSize);
+  }
+
+  changeFontWeight(fontWeight: string) {
+    this.fontWeight$.next(fontWeight);
+  }
+
+  changeLineHeight(lineHeight: string) {
+    this.lineHeight$.next(lineHeight);
   }
 
   changePageWidth(pageWidth) {

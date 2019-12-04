@@ -8,7 +8,7 @@
   </h1> -->
 
   <div *ngIf="sidebar.opened">
-    <button mat-button>
+    <button mat-button (click)="openEpub.click()">
       <mat-icon>library_books</mat-icon>
     </button>
     <button mat-button>
@@ -17,6 +17,12 @@
     <button mat-button (click)="openSettings()">
       <mat-icon>settings</mat-icon>
     </button>
+    <input #openEpub
+      type="file"
+      accept=".epub,.opf"
+      (change)="openEpubFile($event)"
+      style="display: none;"
+    />
   </div>
 </mat-toolbar>
 

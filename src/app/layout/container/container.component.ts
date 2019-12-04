@@ -40,12 +40,23 @@ export class ContainerComponent implements OnInit {
     this.settingsService.fontSize$.subscribe(fontSize => {
       this.epubService.rendition.themes.fontSize(fontSize);
     });
+    // Font-Width
+    this.settingsService.fontWeight$.subscribe(fontWeight => {
+      this.epubService.rendition.themes.override('font-weight', fontWeight);
+    });
+    // Line-Height
+    this.settingsService.lineHeight$.subscribe(lineHeight => {
+      this.epubService.rendition.themes.override('line-height', lineHeight);
+    });
     // Page-Width
     this.settingsService.pageWidth$.subscribe(pageWidth => {
       // Todo
     })
     // Default CSS
     this.epubService.rendition.themes.default({
+      // 'body': {
+      //   'transition': '0.2s',  // Bug
+      // },
       '::selection': {
         'background-color': 'rgba(0, 0, 0, 0.15)',
       }

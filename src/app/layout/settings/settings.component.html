@@ -29,6 +29,24 @@
   >
 </mat-form-field>
 
+<mat-form-field>
+  <mat-label>Font weight</mat-label>
+  <input matInput
+    #setFontWeight
+    [value]="fontWeight"
+    (keyup)="changeFontWeight(setFontWeight.value)"
+  >
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Line height</mat-label>
+  <input matInput
+    #setLineHeight
+    [value]="lineHeight"
+    (keyup)="changeLineHeight(setLineHeight.value)"
+  >
+</mat-form-field>
+
 <!-- <mat-form-field>
   <mat-label>Page width</mat-label>
   <input matInput

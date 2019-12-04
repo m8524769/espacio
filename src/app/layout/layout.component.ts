@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SettingsComponent } from './settings/settings.component';
+import { EpubService } from '../shared/epub.service';
 
 @Component({
   selector: 'app-layout',
@@ -10,6 +11,7 @@ import { SettingsComponent } from './settings/settings.component';
 export class LayoutComponent implements OnInit {
 
   constructor(
+    private epubService: EpubService,
     private bottomSheet: MatBottomSheet,
   ) { }
 
@@ -18,6 +20,15 @@ export class LayoutComponent implements OnInit {
 
   openSettings(): void {
     this.bottomSheet.open(SettingsComponent);
+  }
+
+  openEpubFile(event): void {
+    const file = event.target.files[0];
+    if (window.FileReader) {
+      const fileReader = new FileReader();
+      fileReader.onload = this.epubService.openBook;
+      fileReader.readAsArrayBuffer(file);
+    }
   }
 
 }
