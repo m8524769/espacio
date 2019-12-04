@@ -54,11 +54,11 @@ export class ContainerComponent implements OnInit {
     })
     // Default CSS
     this.epubService.rendition.themes.default({
-      // 'body': {
-      //   'transition': '0.2s',  // Bug
-      // },
+      'body': {
+        // 'transition': 'background-color 0.2s',  // Bug
+      },
       '::selection': {
-        'background-color': 'rgba(0, 0, 0, 0.15)',
+        'background-color': '#d5d5d5',
       }
     });
 

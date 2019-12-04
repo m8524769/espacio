@@ -15,8 +15,8 @@ export class EpubService {
   currentLocation$: Subject<Location>;
 
   constructor() {
-    this.loadBook('../../assets/Kubernetes_in_Action.epub');
-    // this.loadBook('../../assets/thekubernetesbook.epub');
+    // this.loadBook('../../assets/Kubernetes_in_Action.epub');
+    this.loadBook('../../assets/thekubernetesbook.epub');
     // this.loadBook('../../assets/valentin-hauy.epub');
     this.currentSection$ = new Subject();
     this.currentNavItem$ = new Subject();

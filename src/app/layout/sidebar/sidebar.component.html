@@ -1,4 +1,4 @@
-<mat-toolbar style="display: flex; justify-content: center;">
+<mat-toolbar color="accent" style="display: flex; justify-content: center;">
   <button mat-button
     (click)="prevChapter()"
     [disabled]="currentSection?.index===0"
@@ -15,7 +15,7 @@
   </button>
 </mat-toolbar>
 
-<mat-accordion *ngIf="navigation">
+<mat-accordion *ngIf="navigation" multi>
   <mat-expansion-panel
     *ngFor="let chapter of navigation.toc"
     [hideToggle]="chapter.subitems.length===0"

@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming'
+
+@include mat-core()
+
+@import './assets/themes/dark-theme.scss'
+
+.dark-theme
+  @include angular-material-theme($dark-theme)
 
 ::-webkit-scrollbar
   width: 0

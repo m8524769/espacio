@@ -24,6 +24,7 @@ export class SettingsService {
   constructor() {
     // Todo: Load local settings
     const userSettings: Settings = {
+      theme: 'dark',
       fontFamily: "'Crimson Pro', serif",
       fontSize: '20px',
     };

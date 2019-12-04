@@ -1,50 +1,52 @@
-<mat-toolbar style="position: fixed; z-index: 1000; top: 0;">
-  <button mat-button (click)="sidebar.toggle()">
-    <mat-icon>{{ sidebar.opened ? 'arrow_back' : 'menu' }}</mat-icon>
-  </button>
-
-  <!-- <h1 *ngIf="!sidebar.opened" style="font-family: 'Crimson Text'; font-style: italic; font-weight: bold; font-size: larger; padding-top: 5px;">
-    Espacio Reader
-  </h1> -->
-
-  <div *ngIf="sidebar.opened">
-    <button mat-button (click)="openEpub.click()">
-      <mat-icon>library_books</mat-icon>
+<div [class]="isDarkMode && 'dark-theme'">
+  <mat-toolbar style="position: fixed; z-index: 1000; top: 0;">
+    <button mat-button (click)="sidebar.toggle()">
+      <mat-icon>{{ sidebar.opened ? 'arrow_back' : 'menu' }}</mat-icon>
     </button>
-    <button mat-button>
-      <mat-icon>brightness_2</mat-icon>
-    </button>
-    <button mat-button (click)="openSettings()">
-      <mat-icon>settings</mat-icon>
-    </button>
-    <input #openEpub
-      type="file"
-      accept=".epub,.opf"
-      (change)="openEpubFile($event)"
-      style="display: none;"
-    />
-  </div>
-</mat-toolbar>
 
-<mat-sidenav-container>
-  <mat-sidenav
-    #sidebar
-    fixedInViewport="true"
-    mode="side"
-    style="width: 20rem; border-right: 0;"
-  >
-    <mat-toolbar></mat-toolbar>
-    <app-sidebar></app-sidebar>
-  </mat-sidenav>
+    <!-- <h1 *ngIf="!sidebar.opened" style="font-family: 'Crimson Text'; font-style: italic; font-weight: bold; font-size: larger; padding-top: 5px;">
+      Espacio Reader
+    </h1> -->
 
-  <mat-sidenav-content
-    style="
-      display: flex;
-      justify-content: center;
-      margin-top: 64px;
-      height: calc(100vh - 64px);
-    "
-  >
-    <app-container></app-container>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <div *ngIf="sidebar.opened">
+      <button mat-button (click)="openEpub.click()">
+        <mat-icon>library_books</mat-icon>
+      </button>
+      <button mat-button (click)="toggleDarkMode()">
+        <mat-icon>{{ isDarkMode ? 'wb_sunny' : 'brightness_2' }}</mat-icon>
+      </button>
+      <button mat-button (click)="openSettings()">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <input #openEpub
+        type="file"
+        accept=".epub,.opf"
+        (change)="openEpubFile($event)"
+        style="display: none;"
+      />
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav
+      #sidebar
+      fixedInViewport="true"
+      mode="side"
+      style="width: 20rem; border-right: 0;"
+    >
+      <mat-toolbar></mat-toolbar>
+      <app-sidebar></app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content
+      style="
+        display: flex;
+        justify-content: center;
+        margin-top: 64px;
+        height: calc(100vh - 64px);
+      "
+    >
+      <app-container></app-container>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

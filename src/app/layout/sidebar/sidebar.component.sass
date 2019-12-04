@@ -3,17 +3,19 @@
   overflow-x: hidden
   text-overflow: ellipsis
   text-align: start
-  color: rgba(0, 0, 0, 0.87)
-  &:disabled
-    color: rgba(0, 0, 0, 0.87)
-    font-weight: bold
+  // &:disabled
+  //   font-weight: bold
 
 .nav-subitem-button
   max-width: 17rem
   overflow-x: hidden
   text-overflow: ellipsis
   text-align: start
-  color: rgba(0, 0, 0, 0.87)
-  &:disabled
-    color: rgba(0, 0, 0, 0.87)
-    font-weight: bold
+  // &:disabled
+  //   font-weight: bold
+
+::ng-deep .mat-expansion-panel-header[aria-disabled=true]
+  color: rgba(0, 0, 0, .87)
+
+::ng-deep .dark-theme .mat-expansion-panel-header[aria-disabled=true]
+  color: white

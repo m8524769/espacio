@@ -1,9 +1,20 @@
 .default {
-	background: inherit;
 	color: inherit;
 }
 
 .dark {
-	background: #000;
-	color: #fff !important;
+	color: #fafafa;
+}
+
+.dark a {
+	color: #66d9ef;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+	color: white;
 }
