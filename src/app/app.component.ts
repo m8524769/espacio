@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
+import { EpubService } from './shared/epub.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ESPACIO';
+
+  constructor(
+    private titleService: Title,
+    private epubService: EpubService,
+  ) {
+    this.epubService.metadata$.subscribe(metadata => {
+      this.setTitle(`${metadata.title} - ${metadata.creator}`);
+    });
+  }
+
+  setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
 }

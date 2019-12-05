@@ -1,9 +1,8 @@
-
 <mat-form-field>
   <mat-label>Theme</mat-label>
   <mat-select
     #setTheme
-    [value]="theme"
+    [value]="theme$ | async"
     (selectionChange)="changeTheme(setTheme.value)"
   >
     <mat-option value="default">Default</mat-option>
@@ -15,7 +14,7 @@
   <mat-label>Font family</mat-label>
   <input matInput
     #setFontFamily
-    [value]="fontFamily"
+    [value]="fontFamily$ | async"
     (keyup)="changeFontFamily(setFontFamily.value)"
   >
 </mat-form-field>
@@ -24,7 +23,7 @@
   <mat-label>Font size</mat-label>
   <input matInput
     #setFontSize
-    [value]="fontSize"
+    [value]="fontSize$ | async"
     (keyup)="changeFontSize(setFontSize.value)"
   >
 </mat-form-field>
@@ -33,7 +32,7 @@
   <mat-label>Font weight</mat-label>
   <input matInput
     #setFontWeight
-    [value]="fontWeight"
+    [value]="fontWeight$ | async"
     (keyup)="changeFontWeight(setFontWeight.value)"
   >
 </mat-form-field>
@@ -42,7 +41,7 @@
   <mat-label>Line height</mat-label>
   <input matInput
     #setLineHeight
-    [value]="lineHeight"
+    [value]="lineHeight$ | async"
     (keyup)="changeLineHeight(setLineHeight.value)"
   >
 </mat-form-field>
@@ -51,7 +50,7 @@
   <mat-label>Page width</mat-label>
   <input matInput
     #setPageWidth
-    [value]="pageWidth"
+    [value]="pageWidth$ | async"
     (keyup)="changePageWidth(setPageWidth.value)"
   >
 </mat-form-field> -->

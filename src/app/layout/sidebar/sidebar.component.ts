@@ -20,22 +20,10 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.epubService.book.loaded.navigation.then(navigation => {
-      console.log(navigation)
-      this.navigation = navigation;
-    });
-    this.epubService.book.loaded.spine.then(spine => {
-      console.log(spine)
-      this.spine = spine;
-    });
-    this.epubService.currentSection$.subscribe(section => {
-      console.log(section)
-      this.currentSection = section;
-    });
-    // this.epubService.currentNavItem$.subscribe(navItem => {
-    //   console.log(navItem)
-    //   this.currentNavItem = navItem;
-    // });
+    this.epubService.navigation$.subscribe(navigation => this.navigation = navigation);
+    this.epubService.spine$.subscribe(spine => this.spine = spine);
+    this.epubService.currentSection$.subscribe(section => this.currentSection = section);
+    // this.epubService.currentNavItem$.subscribe(navItem => this.currentNavItem = navItem);
   }
 
   enterSection(navItem: NavItem) {

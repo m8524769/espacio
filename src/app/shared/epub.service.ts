@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import ePub, { Book, Rendition } from 'epubjs';
-import Section from 'epubjs/types/section';
-import { Subject } from 'rxjs';
-import { NavItem } from 'epubjs/types/navigation';
+import Section, { SpineItem } from 'epubjs/types/section';
+import { Subject, from } from 'rxjs';
+import Navigation, { NavItem } from 'epubjs/types/navigation';
+import Spine from 'epubjs/types/spine';
+import { PackagingMetadataObject } from 'epubjs/types/packaging';
 
 @Injectable({
   providedIn: 'root'
@@ -10,22 +12,28 @@ import { NavItem } from 'epubjs/types/navigation';
 export class EpubService {
   book: Book;
   rendition: Rendition;
-  currentSection$: Subject<Section>;
-  currentNavItem$: Subject<NavItem>;
-  currentLocation$: Subject<Location>;
+  readonly currentSection$: Subject<Section> = new Subject();
+  readonly currentNavItem$: Subject<NavItem> = new Subject();
+  readonly currentLocation$: Subject<Location> = new Subject();
+
+  readonly metadata$: Subject<PackagingMetadataObject> = new Subject();
+  readonly navigation$: Subject<Navigation> = new Subject();
+  readonly spine$: Subject<SpineItem[]> = new Subject();
 
   constructor() {
-    // this.loadBook('../../assets/Kubernetes_in_Action.epub');
-    this.loadBook('../../assets/thekubernetesbook.epub');
-    // this.loadBook('../../assets/valentin-hauy.epub');
-    this.currentSection$ = new Subject();
-    this.currentNavItem$ = new Subject();
-    this.currentLocation$ = new Subject();
-  }
+    this.book = ePub('../../assets/thekubernetesbook.epub');
+    // this.book = ePub('../../assets/Kubernetes_in_Action.epub');
+    // this.book = ePub('../../assets/valentin-hauy.epub');
 
-  loadBook(path: string): Book {
-    this.book = ePub(path);
-    return this.book;
+    from(this.book.loaded.metadata).subscribe(metadata => {
+      this.metadata$.next(metadata);
+    });
+    from(this.book.loaded.navigation).subscribe(navigation => {
+      this.navigation$.next(navigation);
+    });
+    from(this.book.loaded.spine).subscribe(spine => {
+      this.spine$.next(spine);
+    });
   }
 
   openBook(event) {

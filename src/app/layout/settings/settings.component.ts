@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from 'src/app/shared/settings.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-settings',
@@ -7,24 +8,24 @@ import { SettingsService } from 'src/app/shared/settings.service';
   styleUrls: ['./settings.component.sass']
 })
 export class SettingsComponent implements OnInit {
-  theme: string;
-  fontFamily: string;
-  fontSize: string;
-  fontWeight: string;
-  lineHeight: string;
-  pageWidth: string;
+  theme$: Observable<string>;
+  fontFamily$: Observable<string>;
+  fontSize$: Observable<string>;
+  fontWeight$: Observable<string>;
+  lineHeight$: Observable<string>;
+  // pageWidth$: Observable<string>;
 
   constructor(
     private settingsService: SettingsService,
   ) { }
 
   ngOnInit() {
-    this.settingsService.theme$.subscribe(theme => this.theme = theme);
-    this.settingsService.fontFamily$.subscribe(fontFamily => this.fontFamily = fontFamily);
-    this.settingsService.fontSize$.subscribe(fontSize => this.fontSize = fontSize);
-    this.settingsService.fontWeight$.subscribe(fontWeight => this.fontWeight = fontWeight);
-    this.settingsService.lineHeight$.subscribe(lineHeight => this.lineHeight = lineHeight);
-    this.settingsService.pageWidth$.subscribe(pageWidth => this.pageWidth = pageWidth);
+    this.theme$ = this.settingsService.theme$;
+    this.fontFamily$ = this.settingsService.fontFamily$;
+    this.fontSize$ = this.settingsService.fontSize$;
+    this.fontWeight$ = this.settingsService.fontWeight$;
+    this.lineHeight$ = this.settingsService.lineHeight$;
+    // this.pageWidth$ = this.settingsService.pageWidth$;
   }
 
   changeTheme(theme: string) {
@@ -47,8 +48,8 @@ export class SettingsComponent implements OnInit {
     this.settingsService.changeLineHeight(lineHeight);
   }
 
-  changePageWidth(pageWidth: string) {
-    this.settingsService.changePageWidth(pageWidth);
-  }
+  // changePageWidth(pageWidth: string) {
+  //   this.settingsService.changePageWidth(pageWidth);
+  // }
 
 }
