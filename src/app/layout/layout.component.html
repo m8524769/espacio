@@ -8,12 +8,6 @@
       <mat-icon>{{ sidebar.opened ? 'arrow_back' : 'menu' }}</mat-icon>
     </button>
 
-    <!-- <h1
-      *ngIf="!sidebar.opened && !isHeaderHovered"
-      style="font-family: 'Crimson Text'; font-style: italic; font-weight: bold; font-size: larger; padding-top: 5px;">
-      Espacio Reader
-    </h1> -->
-
     <div *ngIf="sidebar.opened || isHeaderHovered">
       <button mat-button (click)="openEpub.click()">
         <mat-icon>library_books</mat-icon>
@@ -31,6 +25,13 @@
         style="display: none;"
       />
     </div>
+
+    <!-- <img *ngIf="!isDarkMode" src="/assets/logos/classic.png" alt="logo" height="30" style="margin-top: 8px;"> -->
+
+    <span style="flex: 1 1 auto;"></span>
+
+    <img *ngIf="isDarkMode" src="/assets/logos/white.png" alt="logo" height="40" style="margin-top: 3px;">
+    <img *ngIf="!isDarkMode" src="/assets/logos/black.png" alt="logo" height="40" style="margin-top: 3px;">
   </mat-toolbar>
 
   <mat-sidenav-container>
