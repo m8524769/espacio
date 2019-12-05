@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from 'src/app/shared/settings.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-settings',
@@ -8,25 +7,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./settings.component.sass']
 })
 export class SettingsComponent implements OnInit {
-  theme$: Observable<string>;
-  fontFamily$: Observable<string>;
-  fontSize$: Observable<string>;
-  fontWeight$: Observable<string>;
-  lineHeight$: Observable<string>;
-  // pageWidth$: Observable<string>;
+
+  themes: object[] = [
+    {
+      value: 'default',
+      label: 'Default'
+    },
+    {
+      value: 'dark',
+      label: 'Dark'
+    },
+  ];
 
   constructor(
-    private settingsService: SettingsService,
+    public settingsService: SettingsService,
   ) { }
 
-  ngOnInit() {
-    this.theme$ = this.settingsService.theme$;
-    this.fontFamily$ = this.settingsService.fontFamily$;
-    this.fontSize$ = this.settingsService.fontSize$;
-    this.fontWeight$ = this.settingsService.fontWeight$;
-    this.lineHeight$ = this.settingsService.lineHeight$;
-    // this.pageWidth$ = this.settingsService.pageWidth$;
-  }
+  ngOnInit() { }
 
   changeTheme(theme: string) {
     this.settingsService.changeTheme(theme);
@@ -47,9 +44,5 @@ export class SettingsComponent implements OnInit {
   changeLineHeight(lineHeight: string) {
     this.settingsService.changeLineHeight(lineHeight);
   }
-
-  // changePageWidth(pageWidth: string) {
-  //   this.settingsService.changePageWidth(pageWidth);
-  // }
 
 }

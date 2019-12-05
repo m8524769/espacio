@@ -2,11 +2,15 @@
   <mat-label>Theme</mat-label>
   <mat-select
     #setTheme
-    [value]="theme$ | async"
+    [value]="settingsService.theme$ | async"
     (selectionChange)="changeTheme(setTheme.value)"
   >
-    <mat-option value="default">Default</mat-option>
-    <mat-option value="dark">Dark</mat-option>
+    <mat-option
+      *ngFor="let theme of themes"
+      [value]="theme.value"
+    >
+      {{ theme.label }}
+    </mat-option>
   </mat-select>
 </mat-form-field>
 
@@ -14,7 +18,7 @@
   <mat-label>Font family</mat-label>
   <input matInput
     #setFontFamily
-    [value]="fontFamily$ | async"
+    [value]="settingsService.fontFamily$ | async"
     (keyup)="changeFontFamily(setFontFamily.value)"
   >
 </mat-form-field>
@@ -23,7 +27,7 @@
   <mat-label>Font size</mat-label>
   <input matInput
     #setFontSize
-    [value]="fontSize$ | async"
+    [value]="settingsService.fontSize$ | async"
     (keyup)="changeFontSize(setFontSize.value)"
   >
 </mat-form-field>
@@ -32,7 +36,7 @@
   <mat-label>Font weight</mat-label>
   <input matInput
     #setFontWeight
-    [value]="fontWeight$ | async"
+    [value]="settingsService.fontWeight$ | async"
     (keyup)="changeFontWeight(setFontWeight.value)"
   >
 </mat-form-field>
@@ -41,16 +45,7 @@
   <mat-label>Line height</mat-label>
   <input matInput
     #setLineHeight
-    [value]="lineHeight$ | async"
+    [value]="settingsService.lineHeight$ | async"
     (keyup)="changeLineHeight(setLineHeight.value)"
   >
 </mat-form-field>
-
-<!-- <mat-form-field>
-  <mat-label>Page width</mat-label>
-  <input matInput
-    #setPageWidth
-    [value]="pageWidth$ | async"
-    (keyup)="changePageWidth(setPageWidth.value)"
-  >
-</mat-form-field> -->
