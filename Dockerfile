@@ -8,10 +8,12 @@ RUN npm install
 
 COPY . .
 
-CMD ng build --prod
+RUN $(npm bin)/ng build --prod
 
 FROM nginx:1.17.6-alpine
 
-COPY --from=node /app/dist /usr/share/nginx/html
+COPY --from=node /app/dist/espacio /usr/share/nginx/html
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+CMD ["nginx", "-g", "daemon off;"]
