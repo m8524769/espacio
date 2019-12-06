@@ -1,0 +1,10 @@
+node_modules
+dist
+coverage
+.git
+.gitignore
+.github
+.vscode
+
+.DS_Store
+Thumbs.db
