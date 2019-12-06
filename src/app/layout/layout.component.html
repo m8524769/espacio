@@ -9,21 +9,12 @@
     </button>
 
     <div *ngIf="sidebar.opened || isHeaderHovered" [@fadeAnimation]>
-      <button mat-button (click)="openEpub.click()">
-        <mat-icon>library_books</mat-icon>
-      </button>
       <button mat-button (click)="toggleDarkMode()">
         <mat-icon>{{ isDarkMode ? 'wb_sunny' : 'brightness_2' }}</mat-icon>
       </button>
       <button mat-button (click)="openSettings()">
         <mat-icon>settings</mat-icon>
       </button>
-      <input #openEpub
-        type="file"
-        accept=".epub,.opf"
-        (change)="openEpubFile($event)"
-        hidden
-      />
     </div>
 
     <span style="flex: 1 1 auto;"></span>

@@ -4,7 +4,7 @@ import Section, { SpineItem } from 'epubjs/types/section';
 import { Subject, from, BehaviorSubject } from 'rxjs';
 import Navigation, { NavItem } from 'epubjs/types/navigation';
 import { PackagingMetadataObject } from 'epubjs/types/packaging';
-import { RenditionOptions } from 'epubjs/types/rendition';
+import { RenditionOptions, Location } from 'epubjs/types/rendition';
 
 @Injectable({
   providedIn: 'root'
@@ -61,5 +61,6 @@ export class EpubService {
 
   updateCurrentLocation(location: Location) {
     this.currentLocation$.next(location);
+    localStorage.setItem(`${this.book.key()}-last`, location.start.cfi);
   }
 }

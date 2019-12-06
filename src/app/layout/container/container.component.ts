@@ -20,15 +20,17 @@ export class ContainerComponent implements OnInit {
       flow: 'scrolled-doc',
       width: '64rem',
       height: '92vh',
-      // flow: 'paginated',
-      // width: '96rem',
-      // height: '92vh',
     });
 
-    // Display initial page
-    this.epubService.book.loaded.navigation.then(navigation => {
-      this.epubService.rendition.display(navigation.toc[0].href);
-    });
+    // Display last/initial page
+    const lastLocation = localStorage.getItem(`${this.epubService.book.key()}-last`);
+    if (lastLocation) {
+      this.epubService.rendition.display(lastLocation);
+    } else {
+      this.epubService.book.loaded.navigation.then(navigation => {
+        this.epubService.rendition.display(navigation.toc[0].href);
+      });
+    }
 
     // Set Style
     // Theme
@@ -54,12 +56,6 @@ export class ContainerComponent implements OnInit {
     });
     // Page-Width Todo
     this.settingsService.pageWidth$.subscribe(pageWidth => {})
-    // Default CSS
-    this.epubService.rendition.themes.default({
-      '::selection': {
-        'background-color': '#d5d5d5',
-      }
-    });
 
     this.epubService.rendition.on('relocated', location => {
       this.epubService.updateCurrentLocation(location);

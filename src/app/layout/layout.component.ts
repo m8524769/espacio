@@ -42,19 +42,6 @@ export class LayoutComponent implements OnInit {
     });
   }
 
-  openSettings(): void {
-    this.bottomSheet.open(SettingsComponent);
-  }
-
-  openEpubFile(event): void {
-    const file = event.target.files[0];
-    if (window.FileReader) {
-      const fileReader = new FileReader();
-      fileReader.onload = this.epubService.openBook;
-      fileReader.readAsArrayBuffer(file);
-    }
-  }
-
   toggleDarkMode(): void {
     if (this.isDarkMode) {
       this.settingsService.changeTheme('default');
@@ -63,4 +50,7 @@ export class LayoutComponent implements OnInit {
     }
   }
 
+  openSettings(): void {
+    this.bottomSheet.open(SettingsComponent);
+  }
 }

@@ -1,7 +1,13 @@
+/* default theme */
 .default {
 	color: inherit;
 }
 
+.default ::selection {
+	background-color: #d5d5d5;
+}
+
+/* dark theme */
 .dark {
 	color: #fafafa;
 }
@@ -17,4 +23,8 @@
 .dark h5,
 .dark h6 {
 	color: white;
+}
+
+.dark ::selection {
+	background-color: #bcbcbc;
 }
