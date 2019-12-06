@@ -22,8 +22,10 @@ export class DropZoneComponent implements OnInit {
     }
     if (window.FileReader) {
       const fileReader = new FileReader();
-      fileReader.onload = this.epubService.openBook;
-      fileReader.readAsArrayBuffer(epubFile)
+      fileReader.onload = event => {
+        this.epubService.openBook(event);
+      }
+      fileReader.readAsArrayBuffer(epubFile);
     }
   }
 }

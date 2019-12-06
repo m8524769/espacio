@@ -10,7 +10,7 @@ export class FileDropDirective {
   @Output() onFileDropped = new EventEmitter<any>();
 
   @HostBinding('style.opacity')
-  private opacity = '0.7';
+  private opacity = '0.4';
 
   @HostListener('dragover', ['$event'])
   onDragOver(event) {
@@ -23,14 +23,14 @@ export class FileDropDirective {
   public onDragLeave(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.opacity = '0.7';
+    this.opacity = '0.4';
   }
 
   @HostListener('drop', ['$event'])
   public ondrop(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.opacity = '0.7';
+    this.opacity = '0.4';
     let files = event.dataTransfer.files;
     if (files.length > 0) {
       this.onFileDropped.emit(files)

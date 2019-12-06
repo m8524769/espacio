@@ -23,12 +23,6 @@ export class EpubService {
   readonly spine$: Subject<SpineItem[]> = new Subject();
 
   constructor() {
-    // this.book = ePub('../../assets/Kubernetes_in_Action.epub');
-    // this.book = ePub('../../assets/valentin-hauy.epub');
-
-    // this.book.open('../../assets/thekubernetesbook.epub').then(() => {
-    //   console.log('Book loaded');
-    // });
     from(this.book.opened).subscribe(book => {
       this.isBookOpened$.next(book.isOpen);
     });
@@ -44,13 +38,12 @@ export class EpubService {
       console.log('Spine loaded', spine);
       this.spine$.next(spine);
     });
-    console.log(this.book)
   }
 
   openBook(event) {
-    console.log(event.target.result);
-    console.log(this.book)
-    // this.book.open(event.target.result, "binary");
+    this.book.open(event.target.result, 'binary').then(() => {
+      console.log('Book loaded');
+    });
   }
 
   updateCurrentSection(section: Section) {
