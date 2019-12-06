@@ -21,6 +21,8 @@ import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContainerComponent } from './container/container.component';
 import { SettingsComponent } from './settings/settings.component';
+import { DropZoneComponent } from './drop-zone/drop-zone.component';
+import { FileDropDirective } from '../common/file-drop.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { SettingsComponent } from './settings/settings.component';
     SidebarComponent,
     ContainerComponent,
     SettingsComponent,
+    DropZoneComponent,
+    FileDropDirective,
   ],
   imports: [
     CommonModule,

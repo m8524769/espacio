@@ -1,0 +1,13 @@
+<div appFileDrop
+  (click)="fileInput.click()"
+  (onFileDropped)="openEpubFile($event)"
+  style="cursor: pointer; height: 100%; transition: opacity 0.2s;"
+>
+  <h1>DROP EPUB HERE</h1>
+  <input #fileInput
+    type="file"
+    accept=".epub,.opf"
+    (change)="openEpubFile($event.target.files)"
+    hidden
+  >
+</div>

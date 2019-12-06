@@ -22,7 +22,7 @@
         type="file"
         accept=".epub,.opf"
         (change)="openEpubFile($event)"
-        style="display: none;"
+        hidden
       />
     </div>
 
@@ -57,7 +57,8 @@
         height: calc(100vh - 64px);
       "
     >
-      <app-container></app-container>
+      <app-drop-zone *ngIf="!isBookOpened" style="width: 100%;"></app-drop-zone>
+      <app-container *ngIf="isBookOpened"></app-container>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

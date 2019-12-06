@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { trigger, transition, style, animate, group, query, state } from '@angular/animations';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { SettingsComponent } from './settings/settings.component';
 import { EpubService } from '../shared/epub.service';
 import { SettingsService } from '../shared/settings.service';
@@ -23,6 +23,7 @@ import { SettingsService } from '../shared/settings.service';
   ]
 })
 export class LayoutComponent implements OnInit {
+  isBookOpened: boolean;
   isDarkMode: boolean;
   isHeaderHovered: boolean;
 
@@ -33,6 +34,9 @@ export class LayoutComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.epubService.isBookOpened$.subscribe(isOpen => {
+      this.isBookOpened = isOpen;
+    });
     this.settingsService.theme$.subscribe(theme => {
       this.isDarkMode = (theme === 'dark');
     });

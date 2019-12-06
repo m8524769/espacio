@@ -48,10 +48,8 @@ export class ContainerComponent implements OnInit {
     this.settingsService.lineHeight$.subscribe(lineHeight => {
       this.epubService.rendition.themes.override('line-height', lineHeight);
     });
-    // Page-Width
-    this.settingsService.pageWidth$.subscribe(pageWidth => {
-      // Todo
-    })
+    // Page-Width Todo
+    this.settingsService.pageWidth$.subscribe(pageWidth => {})
     // Default CSS
     this.epubService.rendition.themes.default({
       'body': {

@@ -1,4 +1,4 @@
-<mat-toolbar color="accent" style="display: flex; justify-content: center;">
+<mat-toolbar *ngIf="currentSection" color="accent" style="display: flex; justify-content: center;">
   <button mat-button
     (click)="prevChapter()"
     [disabled]="currentSection?.index===0"
