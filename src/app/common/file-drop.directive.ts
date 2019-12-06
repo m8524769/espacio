@@ -33,7 +33,7 @@ export class FileDropDirective {
     this.opacity = '0.4';
     let files = event.dataTransfer.files;
     if (files.length > 0) {
-      this.onFileDropped.emit(files)
+      this.onFileDropped.emit(files);
     }
   }
 }
