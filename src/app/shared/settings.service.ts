@@ -22,12 +22,18 @@ export class SettingsService {
   pageWidth$: BehaviorSubject<string>;
 
   constructor() {
-    // Todo: Load local settings
     const userSettings: Settings = {
-      theme: 'dark',
-      fontFamily: "'Crimson Pro', serif",
-      fontSize: '20px',
+      theme: localStorage.getItem('theme'),
+      fontFamily: localStorage.getItem('fontFamily'),
+      fontSize: localStorage.getItem('fontSize'),
+      fontWeight: localStorage.getItem('fontWeight'),
+      lineHeight: localStorage.getItem('lineHeight'),
+      pageWidth: localStorage.getItem('pageWidth'),
     };
+
+    Object.keys(userSettings).forEach(key =>
+      (userSettings[key] == null) && delete userSettings[key]
+    );
 
     const defaultSettings: Settings = {
       theme: 'default',
@@ -54,25 +60,31 @@ export class SettingsService {
 
   changeTheme(theme: string) {
     this.theme$.next(theme);
+    localStorage.setItem('theme', theme);
   }
 
   changeFontFamily(fontFamily: string) {
     this.fontFamily$.next(fontFamily);
+    localStorage.setItem('fontFamily', fontFamily);
   }
 
   changeFontSize(fontSize: string) {
     this.fontSize$.next(fontSize);
+    localStorage.setItem('fontSize', fontSize);
   }
 
   changeFontWeight(fontWeight: string) {
     this.fontWeight$.next(fontWeight);
+    localStorage.setItem('fontWeight', fontWeight);
   }
 
   changeLineHeight(lineHeight: string) {
     this.lineHeight$.next(lineHeight);
+    localStorage.setItem('lineHeight', lineHeight);
   }
 
   changePageWidth(pageWidth) {
     this.pageWidth$.next(pageWidth);
+    localStorage.setItem('pageWidth', pageWidth);
   }
 }

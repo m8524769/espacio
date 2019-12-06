@@ -16,14 +16,18 @@ export class ContainerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.epubService.rendition = this.epubService.book.renderTo('viewer', {
+    this.epubService.renderTo('viewer', {
       flow: 'scrolled-doc',
       width: '64rem',
       height: '92vh',
-
       // flow: 'paginated',
       // width: '96rem',
       // height: '92vh',
+    });
+
+    // Display initial page
+    this.epubService.book.loaded.navigation.then(navigation => {
+      this.epubService.rendition.display(navigation.toc[0].href);
     });
 
     // Set Style
@@ -52,17 +56,9 @@ export class ContainerComponent implements OnInit {
     this.settingsService.pageWidth$.subscribe(pageWidth => {})
     // Default CSS
     this.epubService.rendition.themes.default({
-      'body': {
-        // 'transition': 'background-color 0.2s',  // Bug
-      },
       '::selection': {
         'background-color': '#d5d5d5',
       }
-    });
-
-    // Display initial page
-    this.epubService.book.loaded.navigation.then(navigation => {
-      this.epubService.rendition.display(navigation.toc[0].href);
     });
 
     this.epubService.rendition.on('relocated', location => {
@@ -72,7 +68,7 @@ export class ContainerComponent implements OnInit {
     this.epubService.rendition.on('rendered', section => {
       this.epubService.updateCurrentSection(section);
 
-      const navItem = this.epubService.book.navigation.get(section.href)
+      const navItem = this.epubService.book.navigation.get(section.href);
       if (navItem && navItem.href === section.href) {
         this.epubService.updateCurrentNavItem(navItem);
       }

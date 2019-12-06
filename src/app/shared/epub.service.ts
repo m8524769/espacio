@@ -4,6 +4,7 @@ import Section, { SpineItem } from 'epubjs/types/section';
 import { Subject, from, BehaviorSubject } from 'rxjs';
 import Navigation, { NavItem } from 'epubjs/types/navigation';
 import { PackagingMetadataObject } from 'epubjs/types/packaging';
+import { RenditionOptions } from 'epubjs/types/rendition';
 
 @Injectable({
   providedIn: 'root'
@@ -27,23 +28,27 @@ export class EpubService {
       this.isBookOpened$.next(book.isOpen);
     });
     from(this.book.loaded.metadata).subscribe(metadata => {
-      console.log('Metadata loaded', metadata);
+      // console.log('Metadata loaded', metadata);
       this.metadata$.next(metadata);
     });
     from(this.book.loaded.navigation).subscribe(navigation => {
-      console.log('Navigation loaded', navigation);
+      // console.log('Navigation loaded', navigation);
       this.navigation$.next(navigation);
     });
     from(this.book.loaded.spine).subscribe(spine => {
-      console.log('Spine loaded', spine);
+      // console.log('Spine loaded', spine);
       this.spine$.next(spine);
     });
   }
 
   openBook(event) {
     this.book.open(event.target.result, 'binary').then(() => {
-      console.log('Book loaded');
+      // console.log('Book loaded');
     });
+  }
+
+  renderTo(element: string, options: RenditionOptions) {
+    this.rendition = this.book.renderTo(element, options);
   }
 
   updateCurrentSection(section: Section) {
