@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 
 import { EpubService } from 'src/app/shared/epub.service';
 import { SettingsService } from 'src/app/shared/settings.service';
@@ -13,7 +13,14 @@ export class ContainerComponent implements OnInit {
   constructor(
     private epubService: EpubService,
     private settingsService: SettingsService,
+    private elementRef: ElementRef<Element>,
   ) { }
+
+  scrollRendition(event: WheelEvent) {
+    // this.elementRef.nativeElement.firstElementChild.firstElementChild.scrollBy({
+    //   top: event.deltaY,
+    // });
+  }
 
   ngOnInit() {
     this.epubService.renderTo('viewer', {
@@ -31,6 +38,12 @@ export class ContainerComponent implements OnInit {
         this.epubService.rendition.display(navigation.toc[0].href);
       });
     }
+
+    // Change default style on epub-container
+    this.epubService.rendition.once('rendered', () => {
+      const epubContainer = document.getElementsByClassName('epub-container')[0] as HTMLElement;
+      epubContainer.style.padding = '0 50vw';
+    });
 
     // Set Style
     // Theme
