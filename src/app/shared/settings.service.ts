@@ -8,6 +8,8 @@ export interface Settings {
   fontWeight?: string;
   lineHeight?: string;
   pageWidth?: string;
+  letterSpacing?: string;
+  fontSizeAdjust?: string;
 }
 
 @Injectable({
@@ -20,6 +22,8 @@ export class SettingsService {
   fontWeight$: BehaviorSubject<string>;
   lineHeight$: BehaviorSubject<string>;
   pageWidth$: BehaviorSubject<string>;
+  letterSpacing$: BehaviorSubject<string>;
+  fontSizeAdjust$: BehaviorSubject<string>;
 
   constructor() {
     const userSettings: Settings = {
@@ -29,6 +33,8 @@ export class SettingsService {
       fontWeight: localStorage.getItem('fontWeight'),
       lineHeight: localStorage.getItem('lineHeight'),
       pageWidth: localStorage.getItem('pageWidth'),
+      letterSpacing: localStorage.getItem('letterSpacing'),
+      fontSizeAdjust: localStorage.getItem('fontSizeAdjust'),
     };
 
     Object.keys(userSettings).forEach(key =>
@@ -42,6 +48,8 @@ export class SettingsService {
       fontWeight: 'normal',
       lineHeight: 'normal',
       pageWidth: '64rem',
+      letterSpacing: 'normal',
+      fontSizeAdjust: 'none',
     };
 
     this.initializeSettings(
@@ -56,6 +64,8 @@ export class SettingsService {
     this.fontWeight$ = new BehaviorSubject(settings.fontWeight);
     this.lineHeight$ = new BehaviorSubject(settings.lineHeight);
     this.pageWidth$ = new BehaviorSubject(settings.pageWidth);
+    this.letterSpacing$ = new BehaviorSubject(settings.letterSpacing);
+    this.fontSizeAdjust$ = new BehaviorSubject(settings.fontSizeAdjust);
   }
 
   changeTheme(theme: string) {
@@ -86,5 +96,15 @@ export class SettingsService {
   changePageWidth(pageWidth) {
     this.pageWidth$.next(pageWidth);
     localStorage.setItem('pageWidth', pageWidth);
+  }
+
+  changeLetterSpacing(letterSpacing) {
+    this.letterSpacing$.next(letterSpacing);
+    localStorage.setItem('letterSpacing', letterSpacing);
+  }
+
+  changeFontSizeAdjust(fontSizeAdjust) {
+    this.fontSizeAdjust$.next(fontSizeAdjust);
+    localStorage.setItem('fontSizeAdjust', fontSizeAdjust);
   }
 }

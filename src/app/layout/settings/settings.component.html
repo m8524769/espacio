@@ -49,3 +49,21 @@
     (keyup)="changeLineHeight(setLineHeight.value)"
   >
 </mat-form-field>
+
+<mat-form-field>
+  <mat-label>Letter spacing</mat-label>
+  <input matInput
+    #setLetterSpacing
+    [value]="settingsService.letterSpacing$ | async"
+    (keyup)="changeLetterSpacing(setLetterSpacing.value)"
+  >
+</mat-form-field>
+
+<mat-form-field>
+  <mat-label>Font size adjust</mat-label>
+  <input matInput
+    #setFontSizeAdjust
+    [value]="settingsService.fontSizeAdjust$ | async"
+    (keyup)="changeFontSizeAdjust(setFontSizeAdjust.value)"
+  >
+</mat-form-field>

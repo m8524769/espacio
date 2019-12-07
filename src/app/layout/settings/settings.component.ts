@@ -45,4 +45,11 @@ export class SettingsComponent implements OnInit {
     this.settingsService.changeLineHeight(lineHeight);
   }
 
+  changeLetterSpacing(letterSpacing: string) {
+    this.settingsService.changeLetterSpacing(letterSpacing);
+  }
+
+  changeFontSizeAdjust(fontSizeAdjust: string) {
+    this.settingsService.changeFontSizeAdjust(fontSizeAdjust);
+  }
 }

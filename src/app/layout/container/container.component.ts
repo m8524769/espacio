@@ -61,7 +61,15 @@ export class ContainerComponent implements OnInit {
       this.epubService.rendition.themes.override('line-height', lineHeight);
     });
     // Page-Width Todo
-    this.settingsService.pageWidth$.subscribe(pageWidth => {})
+    this.settingsService.pageWidth$.subscribe(pageWidth => { });
+    // Letter-Spacing
+    this.settingsService.letterSpacing$.subscribe(letterSpacing => {
+      this.epubService.rendition.themes.override('letter-spacing', letterSpacing);
+    });
+    // Font-Size-Adjust
+    this.settingsService.fontSizeAdjust$.subscribe(fontSizeAdjust => {
+      this.epubService.rendition.themes.override('font-size-adjust', fontSizeAdjust);
+    });
 
     this.epubService.rendition.on('relocated', location => {
       this.epubService.updateCurrentLocation(location);
