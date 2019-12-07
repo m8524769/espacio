@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { SettingsComponent } from './settings/settings.component';
 import { EpubService } from '../shared/epub.service';
 import { SettingsService } from '../shared/settings.service';
-import { ContainerComponent } from './container/container.component';
 
 @Component({
   selector: 'app-layout',
@@ -27,15 +26,6 @@ export class LayoutComponent implements OnInit {
   isBookOpened: boolean;
   isDarkMode: boolean;
   isHeaderHovered: boolean;
-
-  @ViewChild('renditionContainer')
-  containerComponent: ContainerComponent;
-
-  scrollRendition(event: WheelEvent) {
-    if (this.containerComponent) {
-      this.containerComponent.scrollRendition(event);
-    }
-  }
 
   constructor(
     private epubService: EpubService,

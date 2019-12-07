@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { EpubService } from 'src/app/shared/epub.service';
 import { SettingsService } from 'src/app/shared/settings.service';
@@ -13,14 +13,7 @@ export class ContainerComponent implements OnInit {
   constructor(
     private epubService: EpubService,
     private settingsService: SettingsService,
-    private elementRef: ElementRef<Element>,
   ) { }
-
-  scrollRendition(event: WheelEvent) {
-    // this.elementRef.nativeElement.firstElementChild.firstElementChild.scrollBy({
-    //   top: event.deltaY,
-    // });
-  }
 
   ngOnInit() {
     this.epubService.renderTo('viewer', {

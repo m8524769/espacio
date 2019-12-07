@@ -41,7 +41,6 @@
     </mat-sidenav>
 
     <mat-sidenav-content
-      (mousewheel)="scrollRendition($event)"
       style="
         display: flex;
         justify-content: center;
@@ -50,7 +49,7 @@
       "
     >
       <app-drop-zone *ngIf="!isBookOpened" style="width: 100%;"></app-drop-zone>
-      <app-container #renditionContainer *ngIf="isBookOpened"></app-container>
+      <app-container *ngIf="isBookOpened"></app-container>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

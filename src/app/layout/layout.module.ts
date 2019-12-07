@@ -23,7 +23,6 @@ import { ContainerComponent } from './container/container.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
 import { FileDropDirective } from '../common/file-drop.directive';
-import { MouseWheelDirective } from '../common/mouse-wheel.directive';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { MouseWheelDirective } from '../common/mouse-wheel.directive';
     SettingsComponent,
     DropZoneComponent,
     FileDropDirective,
-    MouseWheelDirective,
   ],
   imports: [
     CommonModule,
