@@ -25,10 +25,11 @@
     <mat-expansion-panel-header>
       <button
         mat-button
-        [class]="hasSubItems(chapter) ? 'nav-item-short' : 'nav-item'"
+        class="nav-item-button"
         (click)="enterSection(chapter)"
         [matTooltip]="chapter.label"
         matTooltipPosition="right"
+        [ngStyle]="{'max-width.rem': hasSubItems(chapter) ? 15 : 17}"
       >
         {{ chapter.label }}
       </button>
@@ -36,10 +37,11 @@
     <mat-nav-list *ngFor="let section of chapter.subitems">
       <button
         mat-button
-        class="nav-item"
+        class="nav-item-button"
         (click)="enterSection(section)"
         [matTooltip]="section.label"
         matTooltipPosition="right"
+        style="margin-left: 1rem; max-width: 17rem;"
       >
         {{ section.label }}
       </button>
