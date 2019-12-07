@@ -18,14 +18,14 @@
 <mat-accordion *ngIf="navigation" multi>
   <mat-expansion-panel
     *ngFor="let chapter of navigation.toc"
-    [hideToggle]="chapter.subitems.length===0"
-    [disabled]="chapter.subitems.length===0"
+    [hideToggle]="!hasSubItems(chapter)"
+    [disabled]="!hasSubItems(chapter)"
     style="box-shadow: none;"
   >
     <mat-expansion-panel-header>
       <button
         mat-button
-        class="nav-item-button"
+        [class]="hasSubItems(chapter) ? 'nav-item-short' : 'nav-item'"
         (click)="enterSection(chapter)"
         [matTooltip]="chapter.label"
         matTooltipPosition="right"
@@ -36,7 +36,7 @@
     <mat-nav-list *ngFor="let section of chapter.subitems">
       <button
         mat-button
-        class="nav-subitem-button"
+        class="nav-item"
         (click)="enterSection(section)"
         [matTooltip]="section.label"
         matTooltipPosition="right"

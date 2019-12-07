@@ -39,4 +39,8 @@ export class SidebarComponent implements OnInit {
     this.epubService.rendition.next();
   }
 
+  hasSubItems(navItem: NavItem): boolean {
+    return navItem.subitems.length > 0;
+  }
+
 }
