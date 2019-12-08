@@ -18,7 +18,7 @@ export class ContainerComponent implements OnInit {
   ngOnInit() {
     this.epubService.renderTo('viewer', {
       flow: 'scrolled-doc',
-      width: '64rem',
+      width: '840px',
       height: '92vh',
     });
 
@@ -35,7 +35,7 @@ export class ContainerComponent implements OnInit {
     // Change default style on epub-container
     this.epubService.rendition.once('rendered', () => {
       const epubContainer = document.getElementsByClassName('epub-container')[0] as HTMLElement;
-      epubContainer.style.padding = '0 50vw';
+      epubContainer.style.padding = '0 calc(50vw - 420px)';
     });
 
     // Set Style
@@ -60,8 +60,6 @@ export class ContainerComponent implements OnInit {
     this.settingsService.lineHeight$.subscribe(lineHeight => {
       this.epubService.rendition.themes.override('line-height', lineHeight);
     });
-    // Page-Width Todo
-    this.settingsService.pageWidth$.subscribe(pageWidth => { });
     // Letter-Spacing
     this.settingsService.letterSpacing$.subscribe(letterSpacing => {
       this.epubService.rendition.themes.override('letter-spacing', letterSpacing);

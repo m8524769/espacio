@@ -47,7 +47,7 @@ export class SettingsService {
       fontSize: 'medium',
       fontWeight: 'normal',
       lineHeight: 'normal',
-      pageWidth: '64rem',
+      pageWidth: '700px',
       letterSpacing: 'normal',
       fontSizeAdjust: 'none',
     };
