@@ -9,6 +9,9 @@ import { SettingsService } from 'src/app/shared/settings.service';
   styleUrls: ['./container.component.sass']
 })
 export class ContainerComponent implements OnInit {
+  epubContainer: HTMLElement;
+  clientX: number = 0;
+  clientY: number = 0;
 
   constructor(
     private epubService: EpubService,
@@ -32,10 +35,10 @@ export class ContainerComponent implements OnInit {
       });
     }
 
-    // Change default style on epub-container
+    // Change default style of epub-container
     this.epubService.rendition.once('rendered', () => {
-      const epubContainer = document.getElementsByClassName('epub-container')[0] as HTMLElement;
-      epubContainer.style.padding = '0 calc(50vw - 420px)';
+      this.epubContainer = document.getElementsByClassName('epub-container')[0] as HTMLElement;
+      this.epubContainer.style.padding = '0 calc(50vw - 420px)';
     });
 
     // Set Style
@@ -80,6 +83,36 @@ export class ContainerComponent implements OnInit {
       if (navItem && navItem.href === section.href) {
         this.epubService.updateCurrentNavItem(navItem);
       }
+
+      // Listen to the pointer location in the rendition
+      const docElement = this.epubService.rendition.getContents()[0].documentElement as HTMLElement;
+      docElement.addEventListener('mouseup', event => {
+        const offsetX = this.epubContainer.firstElementChild.getBoundingClientRect().left;  // epub-view
+        const offsetY = this.epubContainer.scrollTop;
+        this.clientX = event.clientX + offsetX;
+        this.clientY = event.clientY - offsetY;
+      });
+    });
+
+    this.epubService.rendition.on('selected', (cfirange, contents) => {
+      // Copy the selected content from the <iframe> to an outside element
+      const selection: Selection = contents.window.getSelection();
+      const element: HTMLElement = document.getElementById('epubSelection');
+      element.innerText = selection.toString();
+
+      // Select the outside element
+      const range: Range = document.createRange();
+      range.selectNodeContents(element);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+
+      // Trigger a mouseup event manually
+      element.dispatchEvent(new MouseEvent('mouseup', {
+        bubbles: true,
+        cancelable: true,
+        clientX: this.clientX,
+        clientY: this.clientY,
+      }));
     });
   }
 
