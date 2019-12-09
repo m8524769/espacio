@@ -3,6 +3,11 @@
 
 <span
   id="epubSelection"
-  style="position: fixed; top: 42vh; right: calc(50vw - 530px); font-size: 0;"
+  [ngStyle]="{
+    'position': 'fixed',
+    'top.px': clientY,
+    'left.px': clientX,
+    'font-size': '0'
+  }"
 >
 </span>

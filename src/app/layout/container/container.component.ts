@@ -90,7 +90,7 @@ export class ContainerComponent implements OnInit {
         const offsetX = this.epubContainer.firstElementChild.getBoundingClientRect().left;  // epub-view
         const offsetY = this.epubContainer.scrollTop;
         this.clientX = event.clientX + offsetX;
-        this.clientY = event.clientY - offsetY;
+        this.clientY = event.clientY - offsetY + 64;
       });
     });
 
