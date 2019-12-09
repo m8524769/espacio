@@ -113,6 +113,22 @@ export class ContainerComponent implements OnInit {
         clientX: this.clientX,
         clientY: this.clientY,
       }));
+
+      // Highlight
+      // this.epubService.rendition.annotations.highlight(
+      //   cfirange,
+      //   {},
+      //   (event: MouseEvent) => {
+      //     console.log(event);
+      //   },
+      //   null,
+      //   {
+      //     'fill': '#ffaacc', // yellow ffe680
+      //     'fill-opacity': '0.3',
+      //     'cursor': 'pointer',
+      //   }
+      // );
+      // contents.window.getSelection().removeAllRanges();
     });
   }
 
