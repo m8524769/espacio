@@ -72,6 +72,13 @@ export class ContainerComponent implements OnInit {
       this.epubService.rendition.themes.override('font-size-adjust', fontSizeAdjust);
     });
 
+    // Default Style
+    this.epubService.rendition.themes.default({
+      '::selection': {
+        'background-color': '#d5d5d5'
+      }
+    });
+
     this.epubService.rendition.on('relocated', location => {
       this.epubService.updateCurrentLocation(location);
     });
@@ -79,10 +86,10 @@ export class ContainerComponent implements OnInit {
     this.epubService.rendition.on('rendered', section => {
       this.epubService.updateCurrentSection(section);
 
-      const navItem = this.epubService.book.navigation.get(section.href);
-      if (navItem && navItem.href === section.href) {
-        this.epubService.updateCurrentNavItem(navItem);
-      }
+      // const navItem = this.epubService.book.navigation.get(section.href);
+      // if (navItem && navItem.href === section.href) {
+      //   this.epubService.updateCurrentNavItem(navItem);
+      // }
 
       // Listen to the pointer location in the rendition
       const docElement = this.epubService.rendition.getContents()[0].documentElement as HTMLElement;
@@ -90,24 +97,32 @@ export class ContainerComponent implements OnInit {
         const offsetX = this.epubContainer.firstElementChild.getBoundingClientRect().left;  // epub-view
         const offsetY = this.epubContainer.scrollTop;
         this.clientX = event.clientX + offsetX;
-        this.clientY = event.clientY - offsetY + 64;
+        this.clientY = event.clientY - offsetY + 64;  // Height of header is 64px
       });
+
+      // Make <iframe> over the highlight <svg>
+      const iframe = this.epubContainer.firstElementChild.firstElementChild as HTMLElement;
+      iframe.style.position = 'absolute';
+      iframe.style.zIndex = '1';
     });
 
     this.epubService.rendition.on('selected', (cfirange, contents) => {
       // Copy the selected content from the <iframe> to an outside element
-      const selection: Selection = contents.window.getSelection();
-      const element: HTMLElement = document.getElementById('epubSelection');
-      element.innerText = selection.toString();
+      const epubSelection: Selection = contents.window.getSelection();
+      const agent: HTMLElement = document.getElementById('epubSelection');
+      agent.innerText = epubSelection.toString();
+
+      // Clean any current selection
+      const selection: Selection = window.getSelection();
+      selection.removeAllRanges();
 
       // Select the outside element
-      const range: Range = document.createRange();
-      range.selectNodeContents(element);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
+      const range: Range = new Range();
+      range.selectNodeContents(agent);
+      selection.addRange(range);
 
       // Trigger a mouseup event manually
-      element.dispatchEvent(new MouseEvent('mouseup', {
+      agent.dispatchEvent(new MouseEvent('mouseup', {
         bubbles: true,
         cancelable: true,
         clientX: this.clientX,
@@ -123,9 +138,9 @@ export class ContainerComponent implements OnInit {
       //   },
       //   null,
       //   {
-      //     'fill': '#ffaacc', // yellow ffe680
-      //     'fill-opacity': '0.3',
-      //     'cursor': 'pointer',
+      //     'fill': '#ffaacc', // pink
+      //     // 'fill': '#ffe680', // yellow
+      //     'fill-opacity': '0.6',
       //   }
       // );
       // contents.window.getSelection().removeAllRanges();
