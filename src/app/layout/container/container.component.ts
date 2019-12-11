@@ -22,7 +22,7 @@ export class ContainerComponent implements OnInit {
     this.epubService.renderTo('viewer', {
       flow: 'scrolled-doc',
       width: '840px',
-      height: '92vh',
+      height: 'calc(100vh - 64px)',
     });
 
     // Display last/initial page
