@@ -14,7 +14,7 @@
       <mat-icon>{{ sidebar.opened ? 'arrow_back' : 'menu' }}</mat-icon>
     </button>
 
-    <div *ngIf="sidebar.opened || isHeaderHovered" [@fadeAnimation]>
+    <div *ngIf="isHeaderHovered || sidebar.opened" [@fadeAnimation]>
       <button mat-button (click)="toggleDarkMode()">
         <mat-icon>{{ isDarkMode ? 'wb_sunny' : 'brightness_2' }}</mat-icon>
       </button>
@@ -26,12 +26,14 @@
     <span style="flex: 1 1 auto;"></span>
 
     <img
-      *ngIf="isDarkMode && isHeaderHovered"
-      [@fadeAnimation]
       src="/assets/logos/white.png"
-      alt="logo"
+      alt="ESPACIO"
       height="40"
-      style="margin-top: 3px;"
+      [ngStyle]="{
+        'margin-top': '3px',
+        'opacity': (isHeaderHovered && isDarkMode) ? '1' : '0',
+        'transition': 'opacity 0.1s'
+      }"
     />
   </mat-toolbar>
 
