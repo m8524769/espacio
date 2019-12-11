@@ -2,7 +2,13 @@
   <mat-toolbar
     (mouseenter)="isHeaderHovered=true"
     (mouseleave)="isHeaderHovered=false"
-    style="position: fixed; z-index: 1000; top: 0;"
+    [ngStyle]="{
+      'position': 'fixed',
+      'z-index': '1000',
+      'top': '0',
+      'opacity': (isHeaderHovered || sidebar.opened) ? '1' : '0.5',
+      'transition': 'opacity 0.4s'
+    }"
   >
     <button mat-button (click)="sidebar.toggle()">
       <mat-icon>{{ sidebar.opened ? 'arrow_back' : 'menu' }}</mat-icon>
