@@ -1,4 +1,4 @@
-<mat-form-field>
+<mat-form-field class="settings-form">
   <mat-label>Theme</mat-label>
   <mat-select
     #setTheme
@@ -6,42 +6,89 @@
     (selectionChange)="changeTheme(setTheme.value)"
   >
     <mat-option
-      *ngFor="let theme of themes"
-      [value]="theme.value"
+      *ngFor="let option of themeOptions"
+      [value]="option.value"
     >
-      {{ theme.label }}
+      {{ option.viewValue }}
     </mat-option>
   </mat-select>
 </mat-form-field>
 
-<mat-form-field>
+<mat-form-field class="settings-form">
   <mat-label>Font family</mat-label>
   <input matInput
     #setFontFamily
     [value]="settingsService.fontFamily$ | async"
     (keyup)="changeFontFamily(setFontFamily.value)"
+    [matAutocomplete]="fontFamilyAuto"
   >
+  <mat-autocomplete
+    #fontFamilyAuto="matAutocomplete"
+    (optionSelected)="changeFontFamily(setFontFamily.value)"
+  >
+    <mat-option
+      *ngFor="let option of fontFamilyOptions"
+      [value]="option.value"
+      [ngStyle]="{'font-family': option.value}"
+    >
+      {{ option.viewValue }}
+    </mat-option>
+  </mat-autocomplete>
 </mat-form-field>
 
-<mat-form-field>
+<mat-form-field class="settings-form">
   <mat-label>Font size</mat-label>
   <input matInput
     #setFontSize
     [value]="settingsService.fontSize$ | async"
     (keyup)="changeFontSize(setFontSize.value)"
+    [matAutocomplete]="fontSizeAuto"
   >
+  <mat-autocomplete
+    #fontSizeAuto="matAutocomplete"
+    (optionSelected)="changeFontSize(setFontSize.value)"
+  >
+    <mat-option
+      *ngFor="let option of fontSizeOptions"
+      [value]="option.value"
+      [ngStyle]="{
+        'font-family': setFontFamily.value,
+        'font-size': option.value
+      }"
+    >
+      {{ option.viewValue }}
+    </mat-option>
+  </mat-autocomplete>
 </mat-form-field>
 
-<mat-form-field>
+<mat-form-field class="settings-form">
   <mat-label>Font weight</mat-label>
   <input matInput
     #setFontWeight
     [value]="settingsService.fontWeight$ | async"
     (keyup)="changeFontWeight(setFontWeight.value)"
+    [matAutocomplete]="fontWeightAuto"
   >
+  <mat-autocomplete
+    #fontWeightAuto="matAutocomplete"
+    (optionSelected)="changeFontWeight(setFontWeight.value)"
+  >
+    <mat-option
+      *ngFor="let option of fontWeightOptions"
+      [value]="option.value"
+      [ngStyle]="{
+        'font-family': setFontFamily.value,
+        'font-weight': option.value
+      }"
+    >
+      {{ option.viewValue }}
+    </mat-option>
+  </mat-autocomplete>
 </mat-form-field>
 
-<mat-form-field>
+<br />
+
+<mat-form-field class="settings-form">
   <mat-label>Line height</mat-label>
   <input matInput
     #setLineHeight
@@ -50,7 +97,7 @@
   >
 </mat-form-field>
 
-<mat-form-field>
+<mat-form-field class="settings-form">
   <mat-label>Letter spacing</mat-label>
   <input matInput
     #setLetterSpacing
@@ -59,7 +106,7 @@
   >
 </mat-form-field>
 
-<mat-form-field>
+<mat-form-field class="settings-form">
   <mat-label>Font size adjust</mat-label>
   <input matInput
     #setFontSizeAdjust

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -46,6 +47,7 @@ import { FileDropDirective } from '../common/file-drop.directive';
     MatBottomSheetModule,
     MatInputModule,
     MatSelectModule,
+    MatAutocompleteModule,
   ]
 })
 export class LayoutModule { }

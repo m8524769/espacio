@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from 'src/app/shared/settings.service';
 
+interface Option {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -8,15 +13,44 @@ import { SettingsService } from 'src/app/shared/settings.service';
 })
 export class SettingsComponent implements OnInit {
 
-  themes: object[] = [
-    {
-      value: 'default',
-      label: 'Default'
-    },
-    {
-      value: 'dark',
-      label: 'Dark'
-    },
+  themeOptions: Option[] = [
+    { value: 'default', viewValue: 'Default' },
+    { value: 'dark', viewValue: 'Dark' },
+  ];
+
+  fontFamilyOptions: Option[] = [
+    { value: 'inherit', viewValue: 'Default' },
+    { value: 'serif', viewValue: 'Serif' },
+    { value: 'sans-serif', viewValue: 'Sans-serif' },
+    { value: 'monospace', viewValue: 'Monospace' },
+    { value: 'system-ui', viewValue: 'System UI' },
+  ];
+
+  fontSizeOptions: Option[] = [
+    { value: 'medium', viewValue: 'Default' },
+    { value: '10px', viewValue: '10px' },
+    { value: '12px', viewValue: '12px' },
+    { value: '14px', viewValue: '14px' },
+    { value: '16px', viewValue: '16px' },
+    { value: '18px', viewValue: '18px' },
+    { value: '20px', viewValue: '20px' },
+    { value: '22px', viewValue: '22px' },
+    { value: '24px', viewValue: '24px' },
+    { value: '26px', viewValue: '26px' },
+    { value: '28px', viewValue: '28px' },
+  ];
+
+  fontWeightOptions: Option[] = [
+    { value: 'normal', viewValue: 'Default' },
+    { value: '100', viewValue: 'Thin' },
+    { value: '200', viewValue: 'Extra-Light' },
+    { value: '300', viewValue: 'Light' },
+    { value: '400', viewValue: 'Regular' },
+    { value: '500', viewValue: 'Medium' },
+    { value: '600', viewValue: 'Semi-Bold' },
+    { value: '700', viewValue: 'Bold' },
+    { value: '800', viewValue: 'Extra-Bold' },
+    { value: '900', viewValue: 'Black' },
   ];
 
   constructor(
