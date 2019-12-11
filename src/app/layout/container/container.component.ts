@@ -22,7 +22,7 @@ export class ContainerComponent implements OnInit {
     this.epubService.renderTo('viewer', {
       flow: 'scrolled-doc',
       width: '840px',
-      height: 'calc(100vh - 64px)',
+      height: 'calc(100vh - 128px)',
     });
 
     // Display last/initial page
@@ -38,7 +38,7 @@ export class ContainerComponent implements OnInit {
     // Change default style of epub-container
     this.epubService.rendition.once('rendered', () => {
       this.epubContainer = document.getElementsByClassName('epub-container')[0] as HTMLElement;
-      this.epubContainer.style.padding = '0 calc(50vw - 420px)';
+      this.epubContainer.style.padding = '64px calc(50vw - 420px)';
     });
 
     // Set Style
