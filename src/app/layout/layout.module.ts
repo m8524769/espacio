@@ -5,6 +5,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,7 +22,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContainerComponent } from './container/container.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
+import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 import { FileDropDirective } from '../common/file-drop.directive';
+import { SafePipe } from '../common/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { FileDropDirective } from '../common/file-drop.directive';
     ContainerComponent,
     SettingsComponent,
     DropZoneComponent,
+    ImageViewerComponent,
     FileDropDirective,
+    SafePipe,
   ],
   imports: [
     CommonModule,
@@ -44,6 +49,7 @@ import { FileDropDirective } from '../common/file-drop.directive';
     MatDividerModule,
     MatTooltipModule,
     MatCardModule,
+    MatDialogModule,
     MatBottomSheetModule,
     MatInputModule,
     MatSelectModule,

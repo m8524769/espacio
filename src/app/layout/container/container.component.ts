@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { EpubService } from 'src/app/shared/epub.service';
 import { SettingsService } from 'src/app/shared/settings.service';
+import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
 
 @Component({
   selector: 'app-container',
@@ -16,6 +18,7 @@ export class ContainerComponent implements OnInit {
   constructor(
     private epubService: EpubService,
     private settingsService: SettingsService,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -76,6 +79,9 @@ export class ContainerComponent implements OnInit {
     this.epubService.rendition.themes.default({
       '::selection': {
         'background-color': '#d5d5d5'
+      },
+      'img': {
+        'cursor': 'zoom-in'
       }
     });
 
@@ -104,6 +110,17 @@ export class ContainerComponent implements OnInit {
       const iframe = this.epubContainer.firstElementChild.firstElementChild as HTMLElement;
       iframe.style.position = 'absolute';
       iframe.style.zIndex = '1';
+
+      // Add click event listener to all images
+      const images = docElement.getElementsByTagName('img');
+      for (let i = 0; i < images.length; ++i) {
+        const image = images.item(i);
+        image.addEventListener('click', event => {
+          this.dialog.open(ImageViewerComponent, {
+            data: { imageElement: event.target as HTMLImageElement }
+          });
+        });
+      }
     });
 
     this.epubService.rendition.on('selected', (cfirange, contents) => {

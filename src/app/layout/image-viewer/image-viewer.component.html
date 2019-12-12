@@ -1,0 +1,7 @@
+
+<h2 mat-dialog-title>{{ data.imageElement.alt }}</h2>
+
+<mat-dialog-content
+  [innerHTML]="data.imageElement.outerHTML | safe: 'html'"
+>
+</mat-dialog-content>
