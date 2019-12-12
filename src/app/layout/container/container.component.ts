@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Location } from 'epubjs/types/rendition';
+import Contents from 'epubjs/types/contents';
+import Section from 'epubjs/types/section';
 
 import { EpubService } from 'src/app/shared/epub.service';
 import { SettingsService } from 'src/app/shared/settings.service';
@@ -85,11 +88,11 @@ export class ContainerComponent implements OnInit {
       }
     });
 
-    this.epubService.rendition.on('relocated', location => {
+    this.epubService.rendition.on('relocated', (location: Location) => {
       this.epubService.updateCurrentLocation(location);
     });
 
-    this.epubService.rendition.on('rendered', section => {
+    this.epubService.rendition.on('rendered', (section: Section) => {
       this.epubService.updateCurrentSection(section);
 
       // const navItem = this.epubService.book.navigation.get(section.href);
@@ -123,7 +126,7 @@ export class ContainerComponent implements OnInit {
       }
     });
 
-    this.epubService.rendition.on('selected', (cfirange, contents) => {
+    this.epubService.rendition.on('selected', (cfirange: string, contents: Contents) => {
       // Copy the selected content from the <iframe> to an outside element
       const epubSelection: Selection = contents.window.getSelection();
       const agent: HTMLElement = document.getElementById('epubSelection');
