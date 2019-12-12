@@ -17,8 +17,7 @@ export class DropZoneComponent implements OnInit {
   openEpubFile(files: File[]) {
     const epubFile = files[0];
     if (epubFile.type !== 'application/epub+zip') {
-      console.error('not epub file');
-      return;
+      console.warn('Mime type is not application/epub+zip.');
     }
     if (window.FileReader) {
       const fileReader = new FileReader();
