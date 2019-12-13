@@ -29,6 +29,11 @@
         (click)="enterSection(chapter)"
         [matTooltip]="chapter.label"
         matTooltipPosition="right"
+        [ngClass]="{
+          'nav-item-selected': (
+            currentNavItem?.href === chapter.href || currentNavItem?.parent?.href === chapter.href
+          )
+        }"
         [ngStyle]="{'max-width.rem': hasSubItems(chapter) ? 15 : 17}"
       >
         {{ chapter.label }}

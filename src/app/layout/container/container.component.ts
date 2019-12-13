@@ -95,10 +95,13 @@ export class ContainerComponent implements OnInit {
     this.epubService.rendition.on('rendered', (section: Section) => {
       this.epubService.updateCurrentSection(section);
 
-      // const navItem = this.epubService.book.navigation.get(section.href);
-      // if (navItem && navItem.href === section.href) {
-      //   this.epubService.updateCurrentNavItem(navItem);
-      // }
+      // Update current navItem by section
+      const navItem = this.epubService.book.navigation.get(section.href);
+      if (navItem && navItem.href === section.href) {
+        this.epubService.updateCurrentNavItem(navItem);
+      } else {
+        this.epubService.updateCurrentNavItem(null);
+      }
 
       // Listen to the pointer location in the rendition
       const docElement = this.epubService.rendition.getContents()[0].documentElement as HTMLElement;

@@ -13,7 +13,7 @@ export class SidebarComponent implements OnInit {
   navigation: Navigation;
   spine: SpineItem[];
   currentSection: Section;
-  // currentNavItem: NavItem;
+  currentNavItem: NavItem;
 
   constructor(
     private epubService: EpubService
@@ -23,12 +23,11 @@ export class SidebarComponent implements OnInit {
     this.epubService.navigation$.subscribe(navigation => this.navigation = navigation);
     this.epubService.spine$.subscribe(spine => this.spine = spine);
     this.epubService.currentSection$.subscribe(section => this.currentSection = section);
-    // this.epubService.currentNavItem$.subscribe(navItem => this.currentNavItem = navItem);
+    this.epubService.currentNavItem$.subscribe(navItem => this.currentNavItem = navItem);
   }
 
   enterSection(navItem: NavItem) {
     this.epubService.rendition.display(navItem.href);
-    // this.epubService.updateCurrentNavItem(navItem);
   }
 
   prevChapter() {
