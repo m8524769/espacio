@@ -4,7 +4,7 @@ A local ePub reader for personal use.
 
 ### [Demo here](http://106.14.183.168)
 
-***
+![Showcase](./showcase.png)
 
 ## Font Recommendations
 
