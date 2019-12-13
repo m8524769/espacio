@@ -77,6 +77,35 @@ export class ContainerComponent implements OnInit {
     this.settingsService.fontSizeAdjust$.subscribe(fontSizeAdjust => {
       this.epubService.rendition.themes.override('font-size-adjust', fontSizeAdjust);
     });
+    // Drop-Caps
+    this.epubService.rendition.hooks.content.register((content: Contents) => {
+      this.settingsService.dropCaps$.subscribe((dropCaps: string) => {
+        if (Number(dropCaps) > 1) {
+          const dropCapsPercentage = `${Number(dropCaps) * 100}%`;
+          content.addStylesheetRules({
+            'p:first-of-type:first-letter': {
+              'float': 'left',
+              'text-transform': 'capitalize',
+              'font-size': dropCapsPercentage,
+              'line-height': '0.75em',
+              'padding-right': '0.05em',
+              'margin-top': '-0.07em'
+            }
+          });
+        } else {  // Reset drop caps
+          content.addStylesheetRules({
+            'p:first-of-type:first-letter': {
+              'float': 'none',
+              'text-transform': 'none',
+              'font-size': 'inherit',
+              'line-height': 'inherit',
+              'padding-right': '0',
+              'margin-top': '0'
+            }
+          });
+        }
+      });
+    });
 
     // Default Style
     this.epubService.rendition.themes.default({

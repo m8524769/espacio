@@ -86,4 +86,8 @@ export class SettingsComponent implements OnInit {
   changeFontSizeAdjust(fontSizeAdjust: string) {
     this.settingsService.changeFontSizeAdjust(fontSizeAdjust);
   }
+
+  changeDropCaps(dropCaps: string) {
+    this.settingsService.changeDropCaps(dropCaps);
+  }
 }

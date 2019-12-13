@@ -114,3 +114,12 @@
     (keyup)="changeFontSizeAdjust(setFontSizeAdjust.value)"
   >
 </mat-form-field>
+
+<mat-form-field class="settings-form">
+  <mat-label>Drop caps</mat-label>
+  <input matInput
+    #setDropCaps
+    [value]="settingsService.dropCaps$ | async"
+    (keyup)="changeDropCaps(setDropCaps.value)"
+  >
+</mat-form-field>

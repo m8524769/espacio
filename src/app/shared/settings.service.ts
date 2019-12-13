@@ -10,6 +10,7 @@ export interface Settings {
   pageWidth?: string;
   letterSpacing?: string;
   fontSizeAdjust?: string;
+  dropCaps?: string;
 }
 
 @Injectable({
@@ -24,6 +25,7 @@ export class SettingsService {
   pageWidth$: BehaviorSubject<string>;
   letterSpacing$: BehaviorSubject<string>;
   fontSizeAdjust$: BehaviorSubject<string>;
+  dropCaps$: BehaviorSubject<string>;
 
   constructor() {
     const userSettings: Settings = {
@@ -35,6 +37,7 @@ export class SettingsService {
       pageWidth: localStorage.getItem('pageWidth'),
       letterSpacing: localStorage.getItem('letterSpacing'),
       fontSizeAdjust: localStorage.getItem('fontSizeAdjust'),
+      dropCaps: localStorage.getItem('dropCaps'),
     };
 
     Object.keys(userSettings).forEach(key =>
@@ -50,6 +53,7 @@ export class SettingsService {
       pageWidth: '700px',
       letterSpacing: 'normal',
       fontSizeAdjust: 'none',
+      dropCaps: '1',
     };
 
     this.initializeSettings(
@@ -66,6 +70,7 @@ export class SettingsService {
     this.pageWidth$ = new BehaviorSubject(settings.pageWidth);
     this.letterSpacing$ = new BehaviorSubject(settings.letterSpacing);
     this.fontSizeAdjust$ = new BehaviorSubject(settings.fontSizeAdjust);
+    this.dropCaps$ = new BehaviorSubject(settings.dropCaps);
   }
 
   changeTheme(theme: string) {
@@ -106,5 +111,10 @@ export class SettingsService {
   changeFontSizeAdjust(fontSizeAdjust) {
     this.fontSizeAdjust$.next(fontSizeAdjust);
     localStorage.setItem('fontSizeAdjust', fontSizeAdjust);
+  }
+
+  changeDropCaps(dropCaps) {
+    this.dropCaps$.next(dropCaps);
+    localStorage.setItem('dropCaps', dropCaps);
   }
 }
