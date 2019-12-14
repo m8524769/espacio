@@ -50,7 +50,7 @@ export class ContainerComponent implements OnInit {
     // Set Style
     // Theme
     this.settingsService.theme$.subscribe(theme => {
-      this.epubService.rendition.themes.register(theme, '/assets/themes.css');
+      this.epubService.rendition.themes.register(theme, './assets/themes.css');
       this.epubService.rendition.themes.select(theme);
     });
     // Font-Family
