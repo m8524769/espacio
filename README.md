@@ -2,7 +2,7 @@
 
 A local ePub reader for personal use.
 
-### [Demo here](http://106.14.183.168)
+### Deployments: [Github Pages](https://m8524769.github.io/espacio/) / [阿里云 ECS](http://106.14.183.168/) (higher availability but not https)
 
 ![Showcase](./showcase.png)
 
