@@ -5,7 +5,7 @@
   "background_color": "#303030",
   "description": "A local ePub reader.",
   "display": "fullscreen",
-  "scope": ".",
+  "scope": "/",
   "start_url": "./",
   "icons": [
     {
