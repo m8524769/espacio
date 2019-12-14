@@ -30,7 +30,7 @@ jobs:
  
     - name: Build
       run: |
-        npm run ng build -- --prod --outputPath=dist --base-href=espacio
+        npm run ng build -- --prod --outputPath=dist --base-href=/espacio
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
