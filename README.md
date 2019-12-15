@@ -2,7 +2,10 @@
 
 A local ePub reader for personal use.
 
-### Deployments: [Github Pages](https://m8524769.github.io/espacio/) / [阿里云 ECS](http://106.14.183.168/) (higher availability but not https)
+### Deployments: [Github Pages](https://m8524769.github.io/espacio/) / [Netlify](https://espacio.netlify.com/)
+
+[![Deploy to Github Pages Status](https://github.com/m8524769/espacio/workflows/Deploy%20to%20Github%20Pages/badge.svg)](https://github.com/m8524769/espacio/actions?query=workflow%3A%22Deploy+to+Github+Pages%22)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0ec8510a-ab73-4c99-98c0-1d77c2e8fbfe/deploy-status)](https://app.netlify.com/sites/espacio/deploys)
 
 ![Showcase](./showcase.png)
 
