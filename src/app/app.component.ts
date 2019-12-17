@@ -31,6 +31,6 @@ export class AppComponent {
   }
 
   setThemeColor(color: string): void {
-    this.metaService.updateTag({ content: color }, 'name=theme-color');
+    this.metaService.updateTag({ name: 'theme-color', content: color });
   }
 }
