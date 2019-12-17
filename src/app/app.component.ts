@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 
 import { EpubService } from './shared/epub.service';
+import { SettingsService } from './shared/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +14,23 @@ export class AppComponent {
 
   constructor(
     private titleService: Title,
+    private metaService: Meta,
     private epubService: EpubService,
+    private settingsService: SettingsService,
   ) {
     this.epubService.metadata$.subscribe(metadata => {
       this.setTitle(`${metadata.title} - ${metadata.creator}`);
     });
+    this.settingsService.theme$.subscribe(theme => {
+      this.setThemeColor((theme === 'dark') ? '#212121' : '#f5f5f5');
+    });
   }
 
-  setTitle(newTitle: string) {
+  setTitle(newTitle: string): void {
     this.titleService.setTitle(newTitle);
+  }
+
+  setThemeColor(color: string): void {
+    this.metaService.updateTag({ content: color }, 'name=theme-color');
   }
 }
