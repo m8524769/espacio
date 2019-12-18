@@ -25,6 +25,16 @@
 
     <span style="flex: 1 1 auto;"></span>
 
+    <h2
+      [ngStyle]="{
+        'padding-right.rem': 1,
+        'opacity': (isHeaderHovered || sidebar.opened) ? '1' : '0',
+        'transition': 'opacity 0.1s'
+      }"
+    >
+      {{ currentNavItem?.label }}
+    </h2>
+
     <!-- <img
       src="/assets/logos/white.png"
       alt="ESPACIO"

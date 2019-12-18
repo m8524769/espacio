@@ -30,9 +30,7 @@
         [matTooltip]="chapter.label"
         matTooltipPosition="right"
         [ngClass]="{
-          'nav-item-selected': (
-            currentNavItem?.href === chapter.href || currentNavItem?.parent?.href === chapter.href
-          )
+          'nav-item-selected': isCurrentNavItem(chapter)
         }"
         [ngStyle]="{'max-width.rem': hasSubItems(chapter) ? 15 : 17}"
       >
@@ -46,6 +44,9 @@
         (click)="enterSection(section)"
         [matTooltip]="section.label"
         matTooltipPosition="right"
+        [ngClass]="{
+          'nav-item-selected': isCurrentNavItem(section)
+        }"
         style="margin-left: 1rem; max-width: 17rem;"
       >
         {{ section.label }}

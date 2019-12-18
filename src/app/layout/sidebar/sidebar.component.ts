@@ -42,4 +42,16 @@ export class SidebarComponent implements OnInit {
     return navItem.subitems.length > 0;
   }
 
+  isCurrentNavItem(navItem: NavItem): boolean {
+    if (!this.currentNavItem) {
+      return false;
+    }
+    return (
+      navItem.id === this.currentNavItem.id ||
+      navItem.id === this.currentNavItem.parent ||
+      navItem.href === this.currentNavItem.href ||
+      navItem.href === this.currentNavItem.parent
+    );
+  }
+
 }

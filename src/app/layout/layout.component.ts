@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { NavItem } from 'epubjs/types/navigation';
 import { SettingsComponent } from './settings/settings.component';
 import { EpubService } from '../shared/epub.service';
 import { SettingsService } from '../shared/settings.service';
@@ -23,6 +24,7 @@ import { SettingsService } from '../shared/settings.service';
   ]
 })
 export class LayoutComponent implements OnInit {
+  currentNavItem: NavItem;
   isBookOpened: boolean;
   isDarkMode: boolean;
   isHeaderHovered: boolean;
@@ -36,6 +38,9 @@ export class LayoutComponent implements OnInit {
   ngOnInit() {
     this.epubService.isBookOpened$.subscribe(isOpen => {
       this.isBookOpened = isOpen;
+    });
+    this.epubService.currentNavItem$.subscribe(navItem => {
+      this.currentNavItem = navItem;
     });
     this.settingsService.theme$.subscribe(theme => {
       this.isDarkMode = (theme === 'dark');

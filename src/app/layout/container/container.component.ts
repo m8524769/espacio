@@ -41,6 +41,11 @@ export class ContainerComponent implements OnInit {
       });
     }
 
+    // Store current book after displayed
+    // this.epubService.rendition.once('displayed', () => {
+    //   this.epubService.storeCurrentBook();
+    // });
+
     // Change default style of epub-container
     this.epubService.rendition.once('rendered', () => {
       this.epubContainer = document.getElementsByClassName('epub-container')[0] as HTMLElement;
@@ -126,11 +131,7 @@ export class ContainerComponent implements OnInit {
 
       // Update current navItem by section
       const navItem = this.epubService.book.navigation.get(section.href);
-      if (navItem && navItem.href === section.href) {
-        this.epubService.updateCurrentNavItem(navItem);
-      } else {
-        this.epubService.updateCurrentNavItem(null);
-      }
+      this.epubService.updateCurrentNavItem(navItem);
 
       // Listen to the pointer location in the rendition
       const docElement = this.epubService.rendition.getContents()[0].documentElement as HTMLElement;
