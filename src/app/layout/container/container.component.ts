@@ -166,6 +166,8 @@ export class ContainerComponent implements OnInit {
     });
 
     this.epubService.rendition.on('selected', (cfirange: string, contents: Contents) => {
+      // Use hypothes.is instead
+      return;
       // Copy the selected content from the <iframe> to an outside element
       const epubSelection: Selection = contents.window.getSelection();
       const agent: HTMLElement = document.getElementById('epubSelection');
