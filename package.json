@@ -10,6 +10,8 @@
     "e2e": "ng e2e"
   },
   "private": true,
+  "repository": "github:m8524769/espacio",
+  "author": "yk <m8524769@gmail.com> (https://m8524769.github.io/)",
   "dependencies": {
     "@angular/animations": "~9.0.0-rc.5",
     "@angular/cdk": "~9.0.0-rc.5",
