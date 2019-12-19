@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Location } from 'epubjs/types/rendition';
 import Contents from 'epubjs/types/contents';
@@ -19,6 +19,7 @@ export class ContainerComponent implements OnInit {
   clientY: number = 0;
 
   constructor(
+    private zone: NgZone,
     private epubService: EpubService,
     private settingsService: SettingsService,
     public dialog: MatDialog,
@@ -152,8 +153,10 @@ export class ContainerComponent implements OnInit {
       for (let i = 0; i < images.length; ++i) {
         const image = images.item(i);
         image.addEventListener('click', event => {
-          this.dialog.open(ImageViewerComponent, {
-            data: { imageElement: event.target as HTMLImageElement }
+          this.zone.run(() => {
+            this.dialog.open(ImageViewerComponent, {
+              data: { imageElement: event.target as HTMLImageElement }
+            });
           });
         });
       }
