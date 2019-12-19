@@ -19,9 +19,9 @@ export class ContainerComponent implements OnInit {
   clientY: number = 0;
 
   constructor(
-    private zone: NgZone,
     private epubService: EpubService,
     private settingsService: SettingsService,
+    private zone: NgZone,
     public dialog: MatDialog,
   ) { }
 
@@ -115,6 +115,9 @@ export class ContainerComponent implements OnInit {
 
     // Default Style
     this.epubService.rendition.themes.default({
+      'a': {
+        'color': '#ff4081'
+      },
       '::selection': {
         'background-color': '#d5d5d5'
       },
