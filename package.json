@@ -1,6 +1,6 @@
 {
   "name": "espacio",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
