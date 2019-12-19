@@ -11,6 +11,8 @@ A local ePub reader for personal use.
 
 ![Showcase](./showcase.png)
 
+### Join the Hypothes.is group: [ESPACIO](https://hypothes.is/groups/w129oEZP/espacio)
+
 ## Font Recommendations
 
 - Serif: [Crimson Pro](https://github.com/Fonthausen/CrimsonPro)
