@@ -3,6 +3,10 @@
 	color: inherit;
 }
 
+.default a {
+	color: #ff4081;
+}
+
 .default ::selection {
 	background-color: #d5d5d5;
 }
