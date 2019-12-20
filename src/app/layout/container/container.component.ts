@@ -123,6 +123,13 @@ export class ContainerComponent implements OnInit {
       },
       'img': {
         'cursor': 'zoom-in'
+      },
+      'hypothesis-highlight.annotator-hl': {
+        'background-color': '#ffaacc99 !important',
+        'transition': 'background-color 0.2s'
+      },
+      'hypothesis-highlight.annotator-hl:hover': {
+        'background-color': '#ffaacccc !important'
       }
     });
 
