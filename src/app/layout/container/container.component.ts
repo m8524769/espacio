@@ -35,11 +35,9 @@ export class ContainerComponent implements OnInit {
     // Display last/initial page
     const lastLocation = localStorage.getItem(`${this.epubService.book.key()}-last`);
     if (lastLocation) {
-      this.epubService.rendition.display(lastLocation);
+      this.epubService.display(lastLocation);
     } else {
-      this.epubService.book.loaded.navigation.then(navigation => {
-        this.epubService.rendition.display(navigation.toc[0].href);
-      });
+      this.epubService.display();
     }
 
     // Store current book after displayed

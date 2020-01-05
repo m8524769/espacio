@@ -48,6 +48,10 @@ export class EpubService {
     });
   }
 
+  display(target?: string) {
+    this.rendition.display(target);
+  }
+
   storeCurrentBook(force?: boolean) {
     this.book
       .store('espacio')
