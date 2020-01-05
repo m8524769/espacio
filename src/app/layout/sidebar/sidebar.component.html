@@ -1,14 +1,14 @@
 <mat-toolbar *ngIf="currentSection" color="accent" style="display: flex; justify-content: center;">
   <button mat-button
     (click)="prevChapter()"
-    [disabled]="currentSection?.index===0"
+    [disabled]="currentSection?.href===spine?.first().href"
   >
     <mat-icon>arrow_back_ios</mat-icon>
     <span>Prev Chapter</span>
   </button>
   <button mat-button
     (click)="nextChapter()"
-    [disabled]="currentSection?.index>=spine?.length-1"
+    [disabled]="currentSection?.href===spine?.last().href"
   >
     <span>Next Chapter</span>
     <mat-icon style="margin: 0 -6px 0 6px;">arrow_forward_ios</mat-icon>

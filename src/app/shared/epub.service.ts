@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import ePub, { Book, Rendition } from 'epubjs';
-import Section, { SpineItem } from 'epubjs/types/section';
+import Section from 'epubjs/types/section';
+import Spine from 'epubjs/types/spine';
 import { Subject, from, BehaviorSubject } from 'rxjs';
 import Navigation, { NavItem } from 'epubjs/types/navigation';
 import { PackagingMetadataObject } from 'epubjs/types/packaging';
@@ -21,7 +22,7 @@ export class EpubService {
 
   readonly metadata$: Subject<PackagingMetadataObject> = new Subject();
   readonly navigation$: Subject<Navigation> = new Subject();
-  readonly spine$: Subject<SpineItem[]> = new Subject();
+  readonly spine$: Subject<Spine> = new Subject();
 
   constructor() {
     from(this.book.opened).subscribe(book => {
@@ -36,8 +37,8 @@ export class EpubService {
       this.navigation$.next(navigation);
     });
     from(this.book.loaded.spine).subscribe(spine => {
-      // console.log('Spine loaded', spine);
-      this.spine$.next(spine);
+      // console.log('Spine loaded', spine);  // Error type
+      this.spine$.next(this.book.spine);
     });
   }
 

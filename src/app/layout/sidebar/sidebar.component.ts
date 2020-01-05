@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { EpubService } from 'src/app/shared/epub.service';
 import Navigation, { NavItem } from 'epubjs/types/navigation';
-import Section, { SpineItem } from 'epubjs/types/section';
+import Section from 'epubjs/types/section';
+import Spine from 'epubjs/types/spine';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +12,7 @@ import Section, { SpineItem } from 'epubjs/types/section';
 })
 export class SidebarComponent implements OnInit {
   navigation: Navigation;
-  spine: SpineItem[];
+  spine: Spine;
   currentSection: Section;
   currentNavItem: NavItem;
 
