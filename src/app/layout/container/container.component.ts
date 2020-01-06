@@ -171,8 +171,7 @@ export class ContainerComponent implements OnInit {
     });
 
     this.epubService.rendition.on('selected', (cfirange: string, contents: Contents) => {
-      // Use hypothes.is instead
-      return;
+      return;  // Use hypothes.is instead
       // Copy the selected content from the <iframe> to an outside element
       const epubSelection: Selection = contents.window.getSelection();
       const agent: HTMLElement = document.getElementById('epubSelection');
@@ -194,22 +193,6 @@ export class ContainerComponent implements OnInit {
         clientX: this.clientX,
         clientY: this.clientY,
       }));
-
-      // Highlight
-      // this.epubService.rendition.annotations.highlight(
-      //   cfirange,
-      //   {},
-      //   (event: MouseEvent) => {
-      //     console.log(event);
-      //   },
-      //   null,
-      //   {
-      //     'fill': '#ffaacc', // pink
-      //     // 'fill': '#ffe680', // yellow
-      //     'fill-opacity': '0.6',
-      //   }
-      // );
-      // contents.window.getSelection().removeAllRanges();
     });
   }
 

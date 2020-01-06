@@ -37,7 +37,7 @@ export class EpubService {
       this.navigation$.next(navigation);
     });
     from(this.book.loaded.spine).subscribe(spine => {
-      // console.log('Spine loaded', spine);  // Error type
+      // console.log('Spine loaded', this.book.spine);  // Wrong type
       this.spine$.next(this.book.spine);
     });
   }
