@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit {
   }
 
   enterSection(navItem: NavItem) {
-    this.epubService.rendition.display(navItem.href);
+    this.epubService.display(navItem.href);
   }
 
   prevChapter() {
