@@ -1,4 +1,4 @@
-<div [class]="isDarkMode && 'dark-theme'">
+<div [class.dark-theme]="isDarkMode">
   <mat-toolbar
     (mouseenter)="isHeaderHovered=true"
     (mouseleave)="isHeaderHovered=false"

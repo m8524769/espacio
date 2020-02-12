@@ -45,7 +45,7 @@ export class SettingsService {
     );
 
     const defaultSettings: Settings = {
-      theme: 'default',
+      theme: 'light',
       fontFamily: 'inherit',
       fontSize: 'medium',
       fontWeight: 'normal',

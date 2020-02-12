@@ -49,7 +49,7 @@ export class LayoutComponent implements OnInit {
 
   toggleDarkMode(): void {
     if (this.isDarkMode) {
-      this.settingsService.changeTheme('default');
+      this.settingsService.changeTheme('light');
     } else {
       this.settingsService.changeTheme('dark');
     }

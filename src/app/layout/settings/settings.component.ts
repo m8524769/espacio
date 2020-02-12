@@ -14,7 +14,7 @@ interface Option {
 export class SettingsComponent implements OnInit {
 
   themeOptions: Option[] = [
-    { value: 'default', viewValue: 'Default' },
+    { value: 'light', viewValue: 'Light' },
     { value: 'dark', viewValue: 'Dark' },
   ];
 

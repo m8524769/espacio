@@ -1,13 +1,13 @@
-/* default theme */
-.default {
+/* light theme */
+.light {
 	color: inherit;
 }
 
-.default a {
+.light a {
 	color: #ff4081;
 }
 
-.default ::selection {
+.light ::selection {
 	background-color: #d5d5d5;
 }
 
