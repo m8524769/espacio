@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1591605545328,
+  "timestamp": 1592125765813,
   "index": "/espacio/index.html",
   "assetGroups": [
     {
@@ -8,6 +8,7 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
+        "/espacio/assets/themes.css",
         "/espacio/favicon.ico",
         "/espacio/index.html",
         "/espacio/main-es2015.b8202863cf0642e12ead.js",
@@ -39,10 +40,11 @@
         "/espacio/assets/logos/dark.png",
         "/espacio/assets/logos/default.png",
         "/espacio/assets/logos/white.png",
-        "/espacio/assets/themes.css",
         "/espacio/assets/themes/dark-theme.scss"
       ],
-      "patterns": []
+      "patterns": [
+        "https:\\/\\/fonts\\.googleapi\\.com\\/.*"
+      ]
     }
   ],
   "dataGroups": [],
