@@ -12,7 +12,13 @@ export class DropZoneComponent implements OnInit {
     private epubService: EpubService,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    // caches.match('herman-melville_moby-dick.epub').then(response => {
+    //   response.arrayBuffer().then(epubBuffer => {
+    //     this.epubService.openBook(epubBuffer, 'binary');
+    //   })
+    // }).catch(e => console.log(e));
+  }
 
   openEpubFile(files: File[]) {
     const epubFile = files[0];
@@ -22,9 +28,32 @@ export class DropZoneComponent implements OnInit {
     if (window.FileReader) {
       const fileReader = new FileReader();
       fileReader.onload = event => {
-        this.epubService.openBook(event);
+        const epubBuffer = event.target.result as ArrayBuffer;
+        this.epubService.openBook(epubBuffer, 'binary');
+        this.cacheEpubFile(epubFile.name, epubBuffer);
       }
       fileReader.readAsArrayBuffer(epubFile);
     }
+  }
+
+  cacheEpubFile(fileName: string, epubBuffer: ArrayBuffer) {
+    // Cache .epub file if is not existed
+    caches.match(fileName).then(response => {
+      if (!response) {
+        caches.open('espacio/epub-file').then(cache => {
+          cache.put(fileName, new Response(epubBuffer, {
+            status: 200,
+            headers: new Headers({
+              'Content-Type': 'application/epub+zip',
+              'Content-Length': epubBuffer.byteLength.toString(),
+            }),
+          })).then(() => {
+            // Update fileName$ in epubService
+            this.epubService.fileName$.next(fileName);
+            console.log(`${fileName} is cached in CacheStorage.`);
+          });
+        });
+      }
+    });
   }
 }

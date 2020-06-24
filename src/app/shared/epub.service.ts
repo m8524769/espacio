@@ -12,6 +12,7 @@ import { RenditionOptions, Location } from 'epubjs/types/rendition';
 })
 export class EpubService {
   readonly book: Book = ePub();
+  readonly fileName$: BehaviorSubject<string> = new BehaviorSubject('');
   readonly isBookOpened$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   readonly isBookReady$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -42,10 +43,8 @@ export class EpubService {
     });
   }
 
-  openBook(event) {
-    this.book.open(event.target.result, 'binary').then(() => {
-      // console.log('Book loaded');
-    });
+  openBook(input: any, what?: string) {
+    this.book.open(input, what);
   }
 
   display(target?: string) {

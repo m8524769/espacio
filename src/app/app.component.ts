@@ -20,6 +20,11 @@ export class AppComponent {
   ) {
     this.epubService.metadata$.subscribe(metadata => {
       this.setTitle(`${metadata.title} - ${metadata.creator}`);
+      // Store metadata if is new book
+      // const fileName = this.epubService.fileName$.getValue();
+      // if (fileName) {
+      //   console.log(fileName, metadata);
+      // }
     });
     this.settingsService.theme$.subscribe(theme => {
       this.setThemeColor((theme === 'dark') ? '#212121' : '#f5f5f5');
