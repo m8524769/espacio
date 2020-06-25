@@ -1,24 +1,27 @@
 {
   "configVersion": 1,
-  "timestamp": 1593064773525,
+  "timestamp": 1593073960458,
   "index": "/espacio/index.html",
   "assetGroups": [
     {
       "name": "app",
       "installMode": "prefetch",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "/espacio/assets/themes.css",
         "/espacio/favicon.ico",
         "/espacio/index.html",
-        "/espacio/main-es2015.6dd3f113304140aef59e.js",
-        "/espacio/main-es5.6dd3f113304140aef59e.js",
+        "/espacio/main-es2015.59faaf176f57fdb4e233.js",
+        "/espacio/main-es5.59faaf176f57fdb4e233.js",
         "/espacio/manifest.webmanifest",
-        "/espacio/polyfills-es2015.dda96d88ee4ac63b09ef.js",
-        "/espacio/polyfills-es5.2144d9885a3b5517b21e.js",
-        "/espacio/runtime-es2015.c9afb3256f2870e161de.js",
-        "/espacio/runtime-es5.c9afb3256f2870e161de.js",
-        "/espacio/styles.a3e6ba65158e10b28953.css"
+        "/espacio/polyfills-es2015.a0fa45e0fa52702b64f0.js",
+        "/espacio/polyfills-es5.2dcde1efe3c1bf4aaa25.js",
+        "/espacio/runtime-es2015.409e6590615fb48d139f.js",
+        "/espacio/runtime-es5.409e6590615fb48d139f.js",
+        "/espacio/styles.a452a40fa77e7500340b.css"
       ],
       "patterns": []
     },
@@ -26,6 +29,9 @@
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
       "urls": [
         "/espacio/assets/icons/icon-128x128.png",
         "/espacio/assets/icons/icon-144x144.png",
@@ -65,15 +71,15 @@
     "/espacio/assets/themes.css": "1908b815fe747ecceea71c2756cf2e341b67ad10",
     "/espacio/assets/themes/dark-theme.scss": "550279945361094d657a0071aef43480a783a114",
     "/espacio/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/espacio/index.html": "1d011d4661b4041de21ce2500b6f2e0c7097fbd6",
-    "/espacio/main-es2015.6dd3f113304140aef59e.js": "4c6adf21bc381170cb954fafa35758f7209ef4a9",
-    "/espacio/main-es5.6dd3f113304140aef59e.js": "f80565149415a52827dbfedfa724a263459fe1dc",
+    "/espacio/index.html": "799d4e14ff767053b45095fc4184d340d9a7b219",
+    "/espacio/main-es2015.59faaf176f57fdb4e233.js": "bc9bc4a41420dbd2bea1d173328b5692d84a5a8e",
+    "/espacio/main-es5.59faaf176f57fdb4e233.js": "f86f8f79f22845367ee9988b79fd8dc4536e76e5",
     "/espacio/manifest.webmanifest": "881104d7a998cab8e9de1a77e07317e446313e3b",
-    "/espacio/polyfills-es2015.dda96d88ee4ac63b09ef.js": "8779ed8d9bf0580e1b50b352a9b8fd520be24433",
-    "/espacio/polyfills-es5.2144d9885a3b5517b21e.js": "1ada955af1e0af49e0b94aa05d61c5587bde4ebd",
-    "/espacio/runtime-es2015.c9afb3256f2870e161de.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "/espacio/runtime-es5.c9afb3256f2870e161de.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
-    "/espacio/styles.a3e6ba65158e10b28953.css": "caf4f3de2d8ccf360393be9490eb496225782933"
+    "/espacio/polyfills-es2015.a0fa45e0fa52702b64f0.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
+    "/espacio/polyfills-es5.2dcde1efe3c1bf4aaa25.js": "8aa26ea87b9958c6bd13b7c257c0e9940438e684",
+    "/espacio/runtime-es2015.409e6590615fb48d139f.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/espacio/runtime-es5.409e6590615fb48d139f.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/espacio/styles.a452a40fa77e7500340b.css": "638f79287e5c8fb225df6a2c65efad9dc9c8f16d"
   },
   "navigationUrls": [
     {
