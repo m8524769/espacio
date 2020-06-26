@@ -1,4 +1,4 @@
-FROM node:13.4.0-alpine as node
+FROM node:14.4.0-alpine as node
 
 RUN apk add --no-cache git
 
@@ -12,7 +12,7 @@ COPY . .
 
 RUN $(npm bin)/ng build --prod
 
-FROM nginx:1.17.6-alpine
+FROM nginx:1.19.0-alpine
 
 COPY --from=node /app/dist/espacio /usr/share/nginx/html
 
