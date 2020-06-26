@@ -1,4 +1,4 @@
-<mat-toolbar *ngIf="currentSection" color="accent" style="display: flex; justify-content: center;">
+<mat-toolbar color="accent" style="display: flex; justify-content: center;">
   <button mat-button
     (click)="prevChapter()"
     [disabled]="currentSection?.href===spine?.first().href"
@@ -53,6 +53,4 @@
       </button>
     </mat-nav-list>
   </mat-expansion-panel>
-
-  <ng-content></ng-content>
 </mat-accordion>

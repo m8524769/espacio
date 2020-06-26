@@ -1,0 +1,14 @@
+<mat-action-list>
+  <h3 matSubheader>Recently Opened</h3>
+  <button
+    mat-list-item
+    *ngFor="let book of books"
+    (click)="selectBook(book.fileName)"
+    [matTooltip]="book.metadata.title"
+    matTooltipPosition="right"
+  >
+    <mat-icon matListIcon>book</mat-icon>
+    <div matLine>{{ book.metadata.title }}</div>
+    <div matLine>{{ book.metadata.creator }}</div>
+  </button>
+</mat-action-list>

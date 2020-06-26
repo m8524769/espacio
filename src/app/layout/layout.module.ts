@@ -18,7 +18,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { LayoutComponent } from './layout.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { LibraryComponent } from './library/library.component';
+import { ContentsComponent } from './contents/contents.component';
 import { ContainerComponent } from './container/container.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
@@ -29,7 +30,8 @@ import { SafePipe } from '../common/safe.pipe';
 @NgModule({
   declarations: [
     LayoutComponent,
-    SidebarComponent,
+    LibraryComponent,
+    ContentsComponent,
     ContainerComponent,
     SettingsComponent,
     DropZoneComponent,

@@ -6,11 +6,11 @@ import Section from 'epubjs/types/section';
 import Spine from 'epubjs/types/spine';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.sass']
+  selector: 'app-contents',
+  templateUrl: './contents.component.html',
+  styleUrls: ['./contents.component.sass']
 })
-export class SidebarComponent implements OnInit {
+export class ContentsComponent implements OnInit {
   navigation: Navigation;
   spine: Spine;
   currentSection: Section;
@@ -54,5 +54,4 @@ export class SidebarComponent implements OnInit {
       navItem.href === this.currentNavItem.parent
     );
   }
-
 }

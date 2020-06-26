@@ -12,13 +12,7 @@ export class DropZoneComponent implements OnInit {
     private epubService: EpubService,
   ) { }
 
-  ngOnInit() {
-    // caches.match('herman-melville_moby-dick.epub').then(response => {
-    //   response.arrayBuffer().then(epubBuffer => {
-    //     this.epubService.openBook(epubBuffer, 'binary');
-    //   })
-    // }).catch(e => console.log(e));
-  }
+  ngOnInit() { }
 
   openEpubFile(files: File[]) {
     const epubFile = files[0];
@@ -50,7 +44,7 @@ export class DropZoneComponent implements OnInit {
           })).then(() => {
             // Update fileName$ in epubService
             this.epubService.fileName$.next(fileName);
-            console.log(`${fileName} is cached in CacheStorage.`);
+            // console.log(`${fileName} is cached in CacheStorage.`);
           });
         });
       }
