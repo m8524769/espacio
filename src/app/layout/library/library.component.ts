@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EpubService } from 'src/app/shared/epub.service';
+import { zip } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-library',
@@ -22,23 +24,22 @@ export class LibraryComponent implements OnInit {
       });
     });
 
-    this.epubService.metadata$.subscribe(metadata => {
-      const fileName = this.epubService.fileName$.getValue();
-      if (fileName) {
-        caches.has(metadata.title).then(hasCache => {
-          if (!hasCache) {
-            const blob = new Blob([JSON.stringify({ fileName, metadata }, null, 2)]);
-            caches.open('espacio/library').then(cache => {
-              cache.put(metadata.title, new Response(blob, {
-                status: 200,
-                headers: new Headers({
-                  'Content-Type': 'application/json',
-                }),
-              }));
-            });
-          }
-        });
-      }
+    // Cache new book's info
+    zip(
+      this.epubService.fileName$,
+      this.epubService.metadata$,
+    ).pipe(
+      map(([fileName, metadata]) => ({ fileName, metadata }))
+    ).subscribe(book => {
+      const blob = new Blob([JSON.stringify(book, null, 2)]);
+      caches.open('espacio/library').then(cache => {
+        cache.put(book.metadata.title, new Response(blob, {
+          status: 200,
+          headers: new Headers({
+            'Content-Type': 'application/json',
+          }),
+        }));
+      });
     });
   }
 

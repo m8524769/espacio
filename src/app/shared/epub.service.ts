@@ -12,7 +12,7 @@ import { RenditionOptions, Location } from 'epubjs/types/rendition';
 })
 export class EpubService {
   readonly book: Book = ePub();
-  readonly fileName$: BehaviorSubject<string> = new BehaviorSubject('');
+  readonly fileName$: Subject<string> = new Subject();
   readonly isBookOpened$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   readonly isBookReady$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
