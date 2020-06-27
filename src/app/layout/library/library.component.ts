@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class LibraryComponent implements OnInit {
   books: any[] = [];
+  selected: boolean = false;
 
   constructor(
     private epubService: EpubService,
@@ -44,6 +45,10 @@ export class LibraryComponent implements OnInit {
   }
 
   selectBook(fileName: string) {
+    if (this.selected) {
+      return;
+    }
+    this.selected = true;
     caches.match(fileName).then(response => {
       response.arrayBuffer().then(epubBuffer => {
         this.epubService.openBook(epubBuffer, 'binary');

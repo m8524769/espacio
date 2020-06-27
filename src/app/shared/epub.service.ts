@@ -51,14 +51,6 @@ export class EpubService {
     this.rendition.display(target);
   }
 
-  storeCurrentBook(force?: boolean) {
-    this.book
-      .store('espacio')
-      .add(this.book.resources, force).then(() => {
-        // console.log('stored');
-      });
-  }
-
   renderTo(element: string, options: RenditionOptions) {
     this.rendition = this.book.renderTo(element, options);
   }

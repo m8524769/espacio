@@ -40,11 +40,6 @@ export class ContainerComponent implements OnInit {
       this.epubService.display();
     }
 
-    // Store current book after displayed
-    // this.epubService.rendition.once('displayed', () => {
-    //   this.epubService.storeCurrentBook();
-    // });
-
     // Change default style of epub-container
     this.epubService.rendition.once('rendered', () => {
       this.epubContainer = document.getElementsByClassName('epub-container')[0] as HTMLElement;

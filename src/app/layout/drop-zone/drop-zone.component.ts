@@ -31,23 +31,18 @@ export class DropZoneComponent implements OnInit {
   }
 
   cacheEpubFile(fileName: string, epubBuffer: ArrayBuffer) {
-    // Cache .epub file if is not existed
-    caches.match(fileName).then(response => {
-      if (!response) {
-        caches.open('espacio/epub-file').then(cache => {
-          cache.put(fileName, new Response(epubBuffer, {
-            status: 200,
-            headers: new Headers({
-              'Content-Type': 'application/epub+zip',
-              'Content-Length': epubBuffer.byteLength.toString(),
-            }),
-          })).then(() => {
-            // Update fileName$ in epubService
-            this.epubService.fileName$.next(fileName);
-            // console.log(`${fileName} is cached in CacheStorage.`);
-          });
-        });
-      }
+    caches.open('espacio/epub-file').then(cache => {
+      cache.put(fileName, new Response(epubBuffer, {
+        status: 200,
+        headers: new Headers({
+          'Content-Type': 'application/epub+zip',
+          'Content-Length': epubBuffer.byteLength.toString(),
+        }),
+      })).then(() => {
+        // Update fileName$ in epubService
+        this.epubService.fileName$.next(fileName);
+        // console.log(`${fileName} is cached in CacheStorage.`);
+      });
     });
   }
 }
