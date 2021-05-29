@@ -14,7 +14,7 @@
   "author": "yk <m8524769@gmail.com> (https://m8524769.github.io/)",
   "dependencies": {
     "@angular/animations": "~11.2.14",
-    "@angular/cdk": "~10.0.0",
+    "@angular/cdk": "~11.2.13",
     "@angular/common": "~11.2.14",
     "@angular/compiler": "~11.2.14",
     "@angular/core": "~11.2.14",
