@@ -6,7 +6,7 @@
   <mat-label>Search</mat-label>
   <input matInput
     #searchBox
-    [value]="searchTerm$ | async | titlecase"
+    [value]="searchTerm$ | async"
     (keyup)="searchTerm$.next(searchBox.value)"
   >
   <button
