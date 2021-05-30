@@ -52,8 +52,9 @@
       #sidebar
       fixedInViewport="true"
       mode="side"
-      style="width: 20rem; padding-top: 64px; border-right: 0;"
+      style="width: 20rem; border-right: 0;"
     >
+      <mat-toolbar></mat-toolbar>
       <app-library *ngIf="!isBookOpened"></app-library>
       <app-contents [hidden]="!isBookOpened"></app-contents>
     </mat-sidenav>

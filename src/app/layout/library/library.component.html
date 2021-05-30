@@ -21,7 +21,6 @@
 </mat-form-field>
 
 <mat-action-list>
-  <!-- <h3 matSubheader *ngIf="books.length > 0">Recently Opened</h3> -->
   <button
     mat-list-item
     *ngFor="let book of searchResults"
@@ -29,7 +28,7 @@
     [matTooltip]="book.metadata.title"
     matTooltipPosition="right"
   >
-    <mat-icon matListIcon>book</mat-icon>
+    <img matListAvatar [src]="book.coverImg | safe: 'resourceUrl'" alt="cover">
     <div matLine>{{ book.metadata.title }}</div>
     <div matLine>{{ book.metadata.creator }}</div>
   </button>

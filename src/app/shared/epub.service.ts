@@ -24,6 +24,7 @@ export class EpubService {
   readonly metadata$: Subject<PackagingMetadataObject> = new Subject();
   readonly navigation$: Subject<Navigation> = new Subject();
   readonly spine$: Subject<Spine> = new Subject();
+  readonly coverImg$: Subject<string> = new Subject();
 
   constructor() {
     from(this.book.opened).subscribe(book => {
@@ -41,6 +42,10 @@ export class EpubService {
       // console.log('Spine loaded', this.book.spine);  // Wrong type
       this.spine$.next(this.book.spine);
     });
+    from(this.book.loaded.cover).subscribe(coverUrl => {
+      this.book.archive.createUrl(coverUrl, { base64: true })
+        .then(img => this.coverImg$.next(img));
+    })
   }
 
   openBook(input: any, what?: string) {

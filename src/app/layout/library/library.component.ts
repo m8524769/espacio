@@ -38,8 +38,9 @@ export class LibraryComponent implements OnInit {
     zip(
       this.epubService.fileName$,
       this.epubService.metadata$,
+      this.epubService.coverImg$,
     ).pipe(
-      map(([fileName, metadata]) => ({ fileName, metadata }))
+      map(([fileName, metadata, coverImg]) => ({ fileName, metadata, coverImg }))
     ).subscribe(book => {
       const blob = new Blob([JSON.stringify(book, null, 2)]);
       caches.open('espacio/library').then(cache => {
