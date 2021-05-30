@@ -43,6 +43,10 @@ export class EpubService {
       this.spine$.next(this.book.spine);
     });
     from(this.book.loaded.cover).subscribe(coverUrl => {
+      if (!coverUrl) {
+        this.coverImg$.next('/assets/icons/icon-128x128.png');
+        return;
+      }
       this.book.archive.createUrl(coverUrl, { base64: true })
         .then(img => this.coverImg$.next(img));
     })
