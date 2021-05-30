@@ -1,8 +1,30 @@
+<mat-form-field
+  appearance="fill"
+  hintLabel="By book's title"
+  style="width: 100%;"
+>
+  <mat-label>Search</mat-label>
+  <input matInput
+    #searchBox
+    [value]="searchTerm$ | async"
+    (keyup)="searchTerm$.next(searchBox.value)"
+  >
+  <button
+    *ngIf="searchTerm$ | async"
+    matSuffix
+    mat-icon-button
+    (click)="searchTerm$.next('')"
+    matTooltip="Clear"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
 <mat-action-list>
   <!-- <h3 matSubheader *ngIf="books.length > 0">Recently Opened</h3> -->
   <button
     mat-list-item
-    *ngFor="let book of books"
+    *ngFor="let book of searchResults"
     (click)="selectBook(book.fileName)"
     [matTooltip]="book.metadata.title"
     matTooltipPosition="right"

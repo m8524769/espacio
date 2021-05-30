@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EpubService } from 'src/app/shared/epub.service';
-import { zip } from 'rxjs';
+import { Subject, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -11,6 +11,8 @@ import { map } from 'rxjs/operators';
 export class LibraryComponent implements OnInit {
   books: any[] = [];
   selected: boolean = false;
+  searchTerm$: Subject<string> = new Subject();
+  searchResults: any[] = [];
 
   constructor(
     private epubService: EpubService,
@@ -21,7 +23,14 @@ export class LibraryComponent implements OnInit {
       cache.keys().then(keys => {
         Promise.all(keys.map(
           key => cache.match(key).then(response => response.json())
-        )).then(books => this.books = books.reverse());
+        )).then(books => {
+          this.searchResults = this.books = books.reverse();
+          this.searchTerm$.subscribe(term => {
+            this.searchResults = this.books.filter(book =>
+              book.metadata.title.search(new RegExp(term, "i")) !== -1
+            );
+          });
+        });
       });
     });
 
