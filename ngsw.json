@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1622560484143,
+  "timestamp": 1622563687630,
   "index": "/espacio/index.html",
   "assetGroups": [
     {
@@ -74,7 +74,7 @@
     "/espacio/index.html": "e6b2275cf51cedfcebde4eb7a7eb441dc759fb9a",
     "/espacio/main-es2015.80532fab0d9d68d7e130.js": "40abd0a20b7484c69589bcbc05e59a517666141a",
     "/espacio/main-es5.80532fab0d9d68d7e130.js": "4bcd092691ddf170485b4ba83432ca66bc5fdb6b",
-    "/espacio/manifest.webmanifest": "c9492fb8fad507d3b01cb1a2c08309760a092643",
+    "/espacio/manifest.webmanifest": "76e062fa4676c112f4591c4ecd740620a7776dd9",
     "/espacio/polyfills-es2015.d37102de4e8bbeeb870c.js": "f99b3e6ddd1a8f13b295e75b454efcc958a0be69",
     "/espacio/polyfills-es5.46c1670d01e554884f69.js": "69d4fab40488a049d6615ab5fe0866e92a118af9",
     "/espacio/runtime-es2015.dcea3fa2638f0dcd45f4.js": "47120d6e1baa9428282481eda1157a68b5c7e3d1",

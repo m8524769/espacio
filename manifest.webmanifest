@@ -5,8 +5,7 @@
   "background_color": "#fafafa",
   "description": "A local ePub reader.",
   "display": "fullscreen",
-  "scope": "/",
-  "start_url": "./",
+  "start_url": "./index.html",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
