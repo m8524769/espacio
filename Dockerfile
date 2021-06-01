@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . .
 
-RUN $(npm bin)/ng build --prod
+RUN $(npm bin)/ng build --configuration production
 
 FROM nginx:1.21.0-alpine
 

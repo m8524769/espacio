@@ -30,7 +30,7 @@ jobs:
 
     - name: Build
       run: |
-        npm run ng build -- --prod --outputPath=dist --base-href=/espacio/
+        npm run ng build -- --configuration production --outputPath=dist --base-href=/espacio/
         cp dist/index.html dist/404.html
 
     - name: Deploy
