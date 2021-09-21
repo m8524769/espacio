@@ -59,6 +59,7 @@ export class LibraryComponent implements OnInit {
       return;
     }
     this.selected = true;
+    this.epubService.updateBookLoading(true);
     caches.match(fileName).then(response => {
       response.arrayBuffer().then(epubBuffer => {
         this.epubService.openBook(epubBuffer, 'binary');

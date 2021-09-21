@@ -1,4 +1,5 @@
 <div appFileDrop
+  *ngIf="!(loading$ | async); else spinner"
   class="drop-zone"
   (click)="fileInput.click()"
   (onFileDropped)="openEpubFile($event)"
@@ -11,3 +12,9 @@
     hidden
   >
 </div>
+
+<ng-template #spinner>
+  <div class="loading-spinner">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+</ng-template>

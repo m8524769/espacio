@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { EpubService } from 'src/app/shared/epub.service';
 
 @Component({
@@ -7,14 +8,19 @@ import { EpubService } from 'src/app/shared/epub.service';
   styleUrls: ['./drop-zone.component.sass']
 })
 export class DropZoneComponent implements OnInit {
+  loading$: Observable<boolean>;
 
   constructor(
     private epubService: EpubService,
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.loading$ = this.epubService.isBookLoading$;
+  }
 
   openEpubFile(files: File[]): void {
+    this.epubService.updateBookLoading(true);
+
     const epubFile = files[0];
     if (epubFile.type !== 'application/epub+zip') {
       console.warn('Mime type is not application/epub+zip.');

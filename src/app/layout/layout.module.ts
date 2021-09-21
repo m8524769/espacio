@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LayoutComponent } from './layout.component';
 import { LibraryComponent } from './library/library.component';
@@ -56,6 +57,7 @@ import { SafePipe } from '../common/safe.pipe';
     MatInputModule,
     MatSelectModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class LayoutModule { }

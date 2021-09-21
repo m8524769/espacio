@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import ePub, { Book, Rendition } from 'epubjs';
 import Section from 'epubjs/types/section';
 import Spine from 'epubjs/types/spine';
-import { Subject, from, Observable, defer } from 'rxjs';
+import { Subject, from, Observable, defer, BehaviorSubject } from 'rxjs';
 import Navigation, { NavItem } from 'epubjs/types/navigation';
 import { PackagingMetadataObject } from 'epubjs/types/packaging';
 import { RenditionOptions, Location } from 'epubjs/types/rendition';
@@ -14,6 +14,9 @@ export class EpubService {
   readonly book: Book = ePub();
   readonly fileName$: Subject<string> = new Subject();
   readonly isBookOpened$: Observable<Book>;
+
+  readonly isBookLoading$: Observable<boolean>;
+  private _isBookLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   rendition: Rendition;
   readonly currentSection$: Subject<Section> = new Subject();
@@ -27,6 +30,7 @@ export class EpubService {
 
   constructor() {
     this.isBookOpened$ = defer(() => this.book.opened);
+    this.isBookLoading$ = this._isBookLoading$.asObservable();
 
     from(this.book.loaded.metadata).subscribe(metadata => {
       // console.log('Metadata loaded', metadata);
@@ -60,6 +64,10 @@ export class EpubService {
 
   renderTo(element: string, options: RenditionOptions): void {
     this.rendition = this.book.renderTo(element, options);
+  }
+
+  updateBookLoading(isLoading: boolean): void {
+    this._isBookLoading$.next(isLoading);
   }
 
   updateCurrentSection(section: Section): void {
