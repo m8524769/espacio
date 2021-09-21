@@ -1,56 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingsService } from 'src/app/shared/settings.service';
+import { SettingsService, ThemeType } from 'src/app/shared/settings.service';
 
 interface Option {
   value: string;
-  viewValue: string;
+  displayValue: string;
 }
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.sass']
+  styleUrls: ['./settings.component.sass'],
 })
 export class SettingsComponent implements OnInit {
 
   themeOptions: Option[] = [
-    { value: 'light', viewValue: 'Light' },
-    { value: 'dark', viewValue: 'Dark' },
+    { value: 'light', displayValue: 'Light' },
+    { value: 'dark', displayValue: 'Dark' },
   ];
 
   fontFamilyOptions: Option[] = [
-    { value: 'inherit', viewValue: 'Default' },
-    { value: 'serif', viewValue: 'Serif' },
-    { value: 'sans-serif', viewValue: 'Sans-serif' },
-    { value: 'monospace', viewValue: 'Monospace' },
-    { value: 'system-ui', viewValue: 'System UI' },
+    { value: 'inherit', displayValue: 'Default' },
+    { value: 'serif', displayValue: 'Serif' },
+    { value: 'sans-serif', displayValue: 'Sans-serif' },
+    { value: 'monospace', displayValue: 'Monospace' },
+    { value: 'system-ui', displayValue: 'System UI' },
   ];
 
   fontSizeOptions: Option[] = [
-    { value: 'medium', viewValue: 'Default' },
-    { value: '10px', viewValue: '10px' },
-    { value: '12px', viewValue: '12px' },
-    { value: '14px', viewValue: '14px' },
-    { value: '16px', viewValue: '16px' },
-    { value: '18px', viewValue: '18px' },
-    { value: '20px', viewValue: '20px' },
-    { value: '22px', viewValue: '22px' },
-    { value: '24px', viewValue: '24px' },
-    { value: '26px', viewValue: '26px' },
-    { value: '28px', viewValue: '28px' },
+    { value: 'medium', displayValue: 'Default' },
+    { value: '10px', displayValue: '10px' },
+    { value: '12px', displayValue: '12px' },
+    { value: '14px', displayValue: '14px' },
+    { value: '16px', displayValue: '16px' },
+    { value: '18px', displayValue: '18px' },
+    { value: '20px', displayValue: '20px' },
+    { value: '22px', displayValue: '22px' },
+    { value: '24px', displayValue: '24px' },
+    { value: '26px', displayValue: '26px' },
+    { value: '28px', displayValue: '28px' },
   ];
 
   fontWeightOptions: Option[] = [
-    { value: 'normal', viewValue: 'Default' },
-    { value: '100', viewValue: 'Thin' },
-    { value: '200', viewValue: 'Extra-Light' },
-    { value: '300', viewValue: 'Light' },
-    { value: '400', viewValue: 'Regular' },
-    { value: '500', viewValue: 'Medium' },
-    { value: '600', viewValue: 'Semi-Bold' },
-    { value: '700', viewValue: 'Bold' },
-    { value: '800', viewValue: 'Extra-Bold' },
-    { value: '900', viewValue: 'Black' },
+    { value: 'normal', displayValue: 'Default' },
+    { value: '100', displayValue: 'Thin' },
+    { value: '200', displayValue: 'Extra-Light' },
+    { value: '300', displayValue: 'Light' },
+    { value: '400', displayValue: 'Regular' },
+    { value: '500', displayValue: 'Medium' },
+    { value: '600', displayValue: 'Semi-Bold' },
+    { value: '700', displayValue: 'Bold' },
+    { value: '800', displayValue: 'Extra-Bold' },
+    { value: '900', displayValue: 'Black' },
   ];
 
   constructor(
@@ -59,35 +59,35 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() { }
 
-  changeTheme(theme: string) {
+  changeTheme(theme: ThemeType): void {
     this.settingsService.changeTheme(theme);
   }
 
-  changeFontFamily(fontFamily: string) {
+  changeFontFamily(fontFamily: string): void {
     this.settingsService.changeFontFamily(fontFamily);
   }
 
-  changeFontSize(fontSize: string) {
+  changeFontSize(fontSize: string): void {
     this.settingsService.changeFontSize(fontSize);
   }
 
-  changeFontWeight(fontWeight: string) {
+  changeFontWeight(fontWeight: string): void {
     this.settingsService.changeFontWeight(fontWeight);
   }
 
-  changeLineHeight(lineHeight: string) {
+  changeLineHeight(lineHeight: string): void {
     this.settingsService.changeLineHeight(lineHeight);
   }
 
-  changeLetterSpacing(letterSpacing: string) {
+  changeLetterSpacing(letterSpacing: string): void {
     this.settingsService.changeLetterSpacing(letterSpacing);
   }
 
-  changeFontSizeAdjust(fontSizeAdjust: string) {
+  changeFontSizeAdjust(fontSizeAdjust: string): void {
     this.settingsService.changeFontSizeAdjust(fontSizeAdjust);
   }
 
-  changeDropCaps(dropCaps: string) {
+  changeDropCaps(dropCaps: string): void {
     this.settingsService.changeDropCaps(dropCaps);
   }
 }

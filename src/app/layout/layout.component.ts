@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { NavItem } from 'epubjs/types/navigation';
 import { SettingsComponent } from './settings/settings.component';
 import { EpubService } from '../shared/epub.service';
@@ -14,20 +16,22 @@ import { SettingsService } from '../shared/settings.service';
     trigger('fadeAnimation', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('0.1s ease-out', style({ opacity: 1 }))
+        animate('0.1s ease-out', style({ opacity: 1 })),
       ]),
       transition(':leave', [
         style({ opacity: 1 }),
-        animate('0.1s ease-in', style({ opacity: 0 }))
+        animate('0.1s ease-in', style({ opacity: 0 })),
       ]),
     ]),
-  ]
+  ],
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit, OnDestroy {
   currentNavItem: NavItem;
-  isBookOpened: boolean;
-  isDarkMode: boolean;
-  isHeaderHovered: boolean;
+  isBookOpened: boolean = false;
+  isDarkMode: boolean = false;
+  isHeaderHovered: boolean = false;
+
+  componentDestroyed$: Subject<void> = new Subject();
 
   constructor(
     private epubService: EpubService,
@@ -35,16 +39,27 @@ export class LayoutComponent implements OnInit {
     private bottomSheet: MatBottomSheet,
   ) { }
 
-  ngOnInit() {
-    this.epubService.isBookOpened$.subscribe(isOpen => {
-      this.isBookOpened = isOpen;
+  ngOnInit(): void {
+    this.epubService.isBookOpened$.subscribe(() => {
+      this.isBookOpened = true;
     });
-    this.epubService.currentNavItem$.subscribe(navItem => {
+
+    this.epubService.currentNavItem$.pipe(
+      takeUntil(this.componentDestroyed$),
+    ).subscribe(navItem => {
       this.currentNavItem = navItem;
     });
-    this.settingsService.theme$.subscribe(theme => {
+
+    this.settingsService.theme$.pipe(
+      takeUntil(this.componentDestroyed$),
+    ).subscribe(theme => {
       this.isDarkMode = (theme === 'dark');
     });
+  }
+
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.complete();
   }
 
   toggleDarkMode(): void {

@@ -1,120 +1,103 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
-export interface Settings {
-  theme?: string;
-  fontFamily?: string;
-  fontSize?: string;
-  fontWeight?: string;
-  lineHeight?: string;
-  pageWidth?: string;
-  letterSpacing?: string;
-  fontSizeAdjust?: string;
-  dropCaps?: string;
-}
+export type ThemeType = 'light' | 'dark';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SettingsService {
-  theme$: BehaviorSubject<string>;
-  fontFamily$: BehaviorSubject<string>;
-  fontSize$: BehaviorSubject<string>;
-  fontWeight$: BehaviorSubject<string>;
-  lineHeight$: BehaviorSubject<string>;
-  pageWidth$: BehaviorSubject<string>;
-  letterSpacing$: BehaviorSubject<string>;
-  fontSizeAdjust$: BehaviorSubject<string>;
-  dropCaps$: BehaviorSubject<string>;
+  readonly theme$: Observable<ThemeType>;
+  readonly fontFamily$: Observable<string>;
+  readonly fontSize$: Observable<string>;
+  readonly fontWeight$: Observable<string>;
+  readonly lineHeight$: Observable<string>;
+  readonly pageWidth$: Observable<string>;
+  readonly letterSpacing$: Observable<string>;
+  readonly fontSizeAdjust$: Observable<string>;
+  readonly dropCaps$: Observable<string>;
+
+  private _theme$: BehaviorSubject<ThemeType>;
+  private _fontFamily$: BehaviorSubject<string>;
+  private _fontSize$: BehaviorSubject<string>;
+  private _fontWeight$: BehaviorSubject<string>;
+  private _lineHeight$: BehaviorSubject<string>;
+  private _pageWidth$: BehaviorSubject<string>;
+  private _letterSpacing$: BehaviorSubject<string>;
+  private _fontSizeAdjust$: BehaviorSubject<string>;
+  private _dropCaps$: BehaviorSubject<string>;
 
   constructor() {
-    const userSettings: Settings = {
-      theme: localStorage.getItem('theme'),
-      fontFamily: localStorage.getItem('fontFamily'),
-      fontSize: localStorage.getItem('fontSize'),
-      fontWeight: localStorage.getItem('fontWeight'),
-      lineHeight: localStorage.getItem('lineHeight'),
-      pageWidth: localStorage.getItem('pageWidth'),
-      letterSpacing: localStorage.getItem('letterSpacing'),
-      fontSizeAdjust: localStorage.getItem('fontSizeAdjust'),
-      dropCaps: localStorage.getItem('dropCaps'),
-    };
+    this._theme$ = new BehaviorSubject(localStorage.getItem('theme') as ThemeType ?? 'light');
+    this.theme$ = this._theme$.asObservable();
 
-    Object.keys(userSettings).forEach(key =>
-      (userSettings[key] == null) && delete userSettings[key]
-    );
+    this._fontFamily$ = new BehaviorSubject(localStorage.getItem('fontFamily') ?? 'inherit');
+    this.fontFamily$ = this._fontFamily$.asObservable();
 
-    const defaultSettings: Settings = {
-      theme: 'light',
-      fontFamily: 'inherit',
-      fontSize: 'medium',
-      fontWeight: 'normal',
-      lineHeight: 'normal',
-      pageWidth: '700px',
-      letterSpacing: 'normal',
-      fontSizeAdjust: 'none',
-      dropCaps: '1',
-    };
+    this._fontSize$ = new BehaviorSubject(localStorage.getItem('fontSize') ?? 'medium');
+    this.fontSize$ = this._fontSize$.asObservable();
 
-    this.initializeSettings(
-      Object.assign(defaultSettings, userSettings)
-    );
+    this._fontWeight$ = new BehaviorSubject(localStorage.getItem('fontWeight') ?? 'normal');
+    this.fontWeight$ = this._fontWeight$.asObservable();
+
+    this._lineHeight$ = new BehaviorSubject(localStorage.getItem('lineHeight') ?? 'normal');
+    this.lineHeight$ = this._lineHeight$.asObservable();
+
+    this._pageWidth$ = new BehaviorSubject(localStorage.getItem('pageWidth') ?? '700px');
+    this.pageWidth$ = this._pageWidth$.asObservable();
+
+    this._letterSpacing$ = new BehaviorSubject(localStorage.getItem('letterSpacing') ?? 'normal');
+    this.letterSpacing$ = this._letterSpacing$.asObservable();
+
+    this._fontSizeAdjust$ = new BehaviorSubject(localStorage.getItem('fontSizeAdjust') ?? 'none');
+    this.fontSizeAdjust$ = this._fontSizeAdjust$.asObservable();
+
+    this._dropCaps$ = new BehaviorSubject(localStorage.getItem('dropCaps') ?? '1');
+    this.dropCaps$ = this._dropCaps$.asObservable();
   }
 
-  initializeSettings(settings: Settings) {
-    this.theme$ = new BehaviorSubject(settings.theme);
-    this.fontFamily$ = new BehaviorSubject(settings.fontFamily);
-    this.fontSize$ = new BehaviorSubject(settings.fontSize);
-    this.fontWeight$ = new BehaviorSubject(settings.fontWeight);
-    this.lineHeight$ = new BehaviorSubject(settings.lineHeight);
-    this.pageWidth$ = new BehaviorSubject(settings.pageWidth);
-    this.letterSpacing$ = new BehaviorSubject(settings.letterSpacing);
-    this.fontSizeAdjust$ = new BehaviorSubject(settings.fontSizeAdjust);
-    this.dropCaps$ = new BehaviorSubject(settings.dropCaps);
-  }
-
-  changeTheme(theme: string) {
-    this.theme$.next(theme);
+  changeTheme(theme: ThemeType): void {
+    this._theme$.next(theme);
     localStorage.setItem('theme', theme);
   }
 
-  changeFontFamily(fontFamily: string) {
-    this.fontFamily$.next(fontFamily);
+  changeFontFamily(fontFamily: string): void {
+    this._fontFamily$.next(fontFamily);
     localStorage.setItem('fontFamily', fontFamily);
   }
 
-  changeFontSize(fontSize: string) {
-    this.fontSize$.next(fontSize);
+  changeFontSize(fontSize: string): void {
+    this._fontSize$.next(fontSize);
     localStorage.setItem('fontSize', fontSize);
   }
 
-  changeFontWeight(fontWeight: string) {
-    this.fontWeight$.next(fontWeight);
+  changeFontWeight(fontWeight: string): void {
+    this._fontWeight$.next(fontWeight);
     localStorage.setItem('fontWeight', fontWeight);
   }
 
-  changeLineHeight(lineHeight: string) {
-    this.lineHeight$.next(lineHeight);
+  changeLineHeight(lineHeight: string): void {
+    this._lineHeight$.next(lineHeight);
     localStorage.setItem('lineHeight', lineHeight);
   }
 
-  changePageWidth(pageWidth) {
-    this.pageWidth$.next(pageWidth);
+  changePageWidth(pageWidth: string): void {
+    this._pageWidth$.next(pageWidth);
     localStorage.setItem('pageWidth', pageWidth);
   }
 
-  changeLetterSpacing(letterSpacing) {
-    this.letterSpacing$.next(letterSpacing);
+  changeLetterSpacing(letterSpacing: string): void {
+    this._letterSpacing$.next(letterSpacing);
     localStorage.setItem('letterSpacing', letterSpacing);
   }
 
-  changeFontSizeAdjust(fontSizeAdjust) {
-    this.fontSizeAdjust$.next(fontSizeAdjust);
+  changeFontSizeAdjust(fontSizeAdjust: string): void {
+    this._fontSizeAdjust$.next(fontSizeAdjust);
     localStorage.setItem('fontSizeAdjust', fontSizeAdjust);
   }
 
-  changeDropCaps(dropCaps) {
-    this.dropCaps$.next(dropCaps);
+  changeDropCaps(dropCaps: string): void {
+    this._dropCaps$.next(dropCaps);
     localStorage.setItem('dropCaps', dropCaps);
   }
 }

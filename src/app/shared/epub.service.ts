@@ -2,19 +2,18 @@ import { Injectable } from '@angular/core';
 import ePub, { Book, Rendition } from 'epubjs';
 import Section from 'epubjs/types/section';
 import Spine from 'epubjs/types/spine';
-import { Subject, from, BehaviorSubject } from 'rxjs';
+import { Subject, from, Observable, defer } from 'rxjs';
 import Navigation, { NavItem } from 'epubjs/types/navigation';
 import { PackagingMetadataObject } from 'epubjs/types/packaging';
 import { RenditionOptions, Location } from 'epubjs/types/rendition';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EpubService {
   readonly book: Book = ePub();
   readonly fileName$: Subject<string> = new Subject();
-  readonly isBookOpened$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  readonly isBookReady$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  readonly isBookOpened$: Observable<Book>;
 
   rendition: Rendition;
   readonly currentSection$: Subject<Section> = new Subject();
@@ -27,9 +26,8 @@ export class EpubService {
   readonly coverImg$: Subject<string> = new Subject();
 
   constructor() {
-    from(this.book.opened).subscribe(book => {
-      this.isBookOpened$.next(book.isOpen);
-    });
+    this.isBookOpened$ = defer(() => this.book.opened);
+
     from(this.book.loaded.metadata).subscribe(metadata => {
       // console.log('Metadata loaded', metadata);
       this.metadata$.next(metadata);
@@ -49,30 +47,30 @@ export class EpubService {
       }
       this.book.archive.createUrl(coverUrl, { base64: true })
         .then(img => this.coverImg$.next(img));
-    })
+    });
   }
 
-  openBook(input: any, what?: string) {
+  openBook(input: any, what?: string): void {
     this.book.open(input, what);
   }
 
-  display(target?: string) {
+  display(target?: string): void {
     this.rendition.display(target);
   }
 
-  renderTo(element: string, options: RenditionOptions) {
+  renderTo(element: string, options: RenditionOptions): void {
     this.rendition = this.book.renderTo(element, options);
   }
 
-  updateCurrentSection(section: Section) {
+  updateCurrentSection(section: Section): void {
     this.currentSection$.next(section);
   }
 
-  updateCurrentNavItem(navItem: NavItem) {
+  updateCurrentNavItem(navItem: NavItem): void {
     this.currentNavItem$.next(navItem);
   }
 
-  updateCurrentLocation(location: Location) {
+  updateCurrentLocation(location: Location): void {
     this.currentLocation$.next(location);
     localStorage.setItem(`${this.book.key()}-last`, location.start.cfi);
   }

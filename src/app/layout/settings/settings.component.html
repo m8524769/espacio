@@ -9,7 +9,7 @@
       *ngFor="let option of themeOptions"
       [value]="option.value"
     >
-      {{ option.viewValue }}
+      {{ option.displayValue }}
     </mat-option>
   </mat-select>
 </mat-form-field>
@@ -31,7 +31,7 @@
       [value]="option.value"
       [ngStyle]="{'font-family': option.value}"
     >
-      {{ option.viewValue }}
+      {{ option.displayValue }}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
@@ -56,7 +56,7 @@
         'font-size': option.value
       }"
     >
-      {{ option.viewValue }}
+      {{ option.displayValue }}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
@@ -81,7 +81,7 @@
         'font-weight': option.value
       }"
     >
-      {{ option.viewValue }}
+      {{ option.displayValue }}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>

@@ -18,7 +18,7 @@ export class LibraryComponent implements OnInit {
     private epubService: EpubService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     caches.open('espacio/library').then(cache => {
       cache.keys().then(keys => {
         Promise.all(keys.map(
@@ -40,7 +40,7 @@ export class LibraryComponent implements OnInit {
       this.epubService.metadata$,
       this.epubService.coverImg$,
     ).pipe(
-      map(([fileName, metadata, coverImg]) => ({ fileName, metadata, coverImg }))
+      map(([fileName, metadata, coverImg]) => ({ fileName, metadata, coverImg })),
     ).subscribe(book => {
       const blob = new Blob([JSON.stringify(book, null, 2)]);
       caches.open('espacio/library').then(cache => {
@@ -54,7 +54,7 @@ export class LibraryComponent implements OnInit {
     });
   }
 
-  selectBook(fileName: string) {
+  selectBook(fileName: string): void {
     if (this.selected) {
       return;
     }

@@ -66,8 +66,10 @@
         height: 100vh;
       "
     >
-      <app-drop-zone *ngIf="!isBookOpened" style="width: 100%;"></app-drop-zone>
-      <app-container *ngIf="isBookOpened"></app-container>
+      <app-container *ngIf="isBookOpened; else dropZone"></app-container>
+      <ng-template #dropZone>
+        <app-drop-zone style="width: 100%;"></app-drop-zone>
+      </ng-template>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

@@ -1,5 +1,7 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Location } from 'epubjs/types/rendition';
 import Contents from 'epubjs/types/contents';
 import Section from 'epubjs/types/section';
@@ -11,12 +13,14 @@ import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
 @Component({
   selector: 'app-container',
   templateUrl: './container.component.html',
-  styleUrls: ['./container.component.sass']
+  styleUrls: ['./container.component.sass'],
 })
-export class ContainerComponent implements OnInit {
+export class ContainerComponent implements OnInit, OnDestroy {
   epubContainer: HTMLElement;
   clientX: number = 0;
   clientY: number = 0;
+
+  componentDestroyed$: Subject<void> = new Subject();
 
   constructor(
     private epubService: EpubService,
@@ -25,7 +29,7 @@ export class ContainerComponent implements OnInit {
     public dialog: MatDialog,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.epubService.renderTo('viewer', {
       flow: 'scrolled-doc',
       width: '840px',
@@ -48,37 +52,53 @@ export class ContainerComponent implements OnInit {
 
     // Set Style
     // Theme
-    this.settingsService.theme$.subscribe(theme => {
+    this.settingsService.theme$.pipe(
+      takeUntil(this.componentDestroyed$),
+    ).subscribe(theme => {
       this.epubService.rendition.themes.register(theme, './assets/themes.css');
       this.epubService.rendition.themes.select(theme);
     });
     // Font-Family
-    this.settingsService.fontFamily$.subscribe(fontFamily => {
+    this.settingsService.fontFamily$.pipe(
+      takeUntil(this.componentDestroyed$),
+    ).subscribe(fontFamily => {
       this.epubService.rendition.themes.font(fontFamily);
     });
     // Font-Size
-    this.settingsService.fontSize$.subscribe(fontSize => {
+    this.settingsService.fontSize$.pipe(
+      takeUntil(this.componentDestroyed$),
+    ).subscribe(fontSize => {
       this.epubService.rendition.themes.fontSize(fontSize);
     });
     // Font-Width
-    this.settingsService.fontWeight$.subscribe(fontWeight => {
+    this.settingsService.fontWeight$.pipe(
+      takeUntil(this.componentDestroyed$),
+    ).subscribe(fontWeight => {
       this.epubService.rendition.themes.override('font-weight', fontWeight);
     });
     // Line-Height
-    this.settingsService.lineHeight$.subscribe(lineHeight => {
+    this.settingsService.lineHeight$.pipe(
+      takeUntil(this.componentDestroyed$),
+    ).subscribe(lineHeight => {
       this.epubService.rendition.themes.override('line-height', lineHeight);
     });
     // Letter-Spacing
-    this.settingsService.letterSpacing$.subscribe(letterSpacing => {
+    this.settingsService.letterSpacing$.pipe(
+      takeUntil(this.componentDestroyed$),
+    ).subscribe(letterSpacing => {
       this.epubService.rendition.themes.override('letter-spacing', letterSpacing);
     });
     // Font-Size-Adjust
-    this.settingsService.fontSizeAdjust$.subscribe(fontSizeAdjust => {
+    this.settingsService.fontSizeAdjust$.pipe(
+      takeUntil(this.componentDestroyed$),
+    ).subscribe(fontSizeAdjust => {
       this.epubService.rendition.themes.override('font-size-adjust', fontSizeAdjust);
     });
     // Drop-Caps
     this.epubService.rendition.hooks.content.register((content: Contents) => {
-      this.settingsService.dropCaps$.subscribe((dropCaps: string) => {
+      this.settingsService.dropCaps$.pipe(
+        takeUntil(this.componentDestroyed$),
+      ).subscribe(dropCaps => {
         if (Number(dropCaps) > 1) {
           const dropCapsPercentage = `${Number(dropCaps) * 100}%`;
           content.addStylesheetRules({
@@ -189,6 +209,11 @@ export class ContainerComponent implements OnInit {
         clientY: this.clientY,
       }));
     });
+  }
+
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.complete();
   }
 
 }

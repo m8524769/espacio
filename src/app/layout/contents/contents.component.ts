@@ -8,7 +8,7 @@ import Spine from 'epubjs/types/spine';
 @Component({
   selector: 'app-contents',
   templateUrl: './contents.component.html',
-  styleUrls: ['./contents.component.sass']
+  styleUrls: ['./contents.component.sass'],
 })
 export class ContentsComponent implements OnInit {
   navigation: Navigation;
@@ -17,25 +17,25 @@ export class ContentsComponent implements OnInit {
   currentNavItem: NavItem;
 
   constructor(
-    private epubService: EpubService
+    private epubService: EpubService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.epubService.navigation$.subscribe(navigation => this.navigation = navigation);
     this.epubService.spine$.subscribe(spine => this.spine = spine);
     this.epubService.currentSection$.subscribe(section => this.currentSection = section);
     this.epubService.currentNavItem$.subscribe(navItem => this.currentNavItem = navItem);
   }
 
-  enterSection(navItem: NavItem) {
+  enterSection(navItem: NavItem): void {
     this.epubService.display(navItem.href);
   }
 
-  prevChapter() {
+  prevChapter(): void {
     this.epubService.rendition.prev();
   }
 
-  nextChapter() {
+  nextChapter(): void {
     this.epubService.rendition.next();
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -6,14 +6,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './image-viewer.component.html',
   styleUrls: ['./image-viewer.component.sass']
 })
-export class ImageViewerComponent implements OnInit {
+export class ImageViewerComponent {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA)
-    public data: { imageElement: HTMLImageElement }
+    @Inject(MAT_DIALOG_DATA) public data: { imageElement: HTMLImageElement },
   ) { }
-
-  ngOnInit() {
-  }
 
 }

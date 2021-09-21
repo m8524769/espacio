@@ -12,9 +12,9 @@ export class DropZoneComponent implements OnInit {
     private epubService: EpubService,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit(): void { }
 
-  openEpubFile(files: File[]) {
+  openEpubFile(files: File[]): void {
     const epubFile = files[0];
     if (epubFile.type !== 'application/epub+zip') {
       console.warn('Mime type is not application/epub+zip.');
@@ -30,7 +30,7 @@ export class DropZoneComponent implements OnInit {
     }
   }
 
-  cacheEpubFile(fileName: string, epubBuffer: ArrayBuffer) {
+  cacheEpubFile(fileName: string, epubBuffer: ArrayBuffer): void {
     caches.open('espacio/epub-file').then(cache => {
       cache.put(fileName, new Response(epubBuffer, {
         status: 200,
