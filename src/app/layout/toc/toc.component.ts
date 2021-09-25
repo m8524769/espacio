@@ -6,11 +6,11 @@ import Section from 'epubjs/types/section';
 import Spine from 'epubjs/types/spine';
 
 @Component({
-  selector: 'app-contents',
-  templateUrl: './contents.component.html',
-  styleUrls: ['./contents.component.sass'],
+  selector: 'app-toc',
+  templateUrl: './toc.component.html',
+  styleUrls: ['./toc.component.sass'],
 })
-export class ContentsComponent implements OnInit {
+export class TocComponent implements OnInit {
   navigation: Navigation;
   spine: Spine;
   currentSection: Section;

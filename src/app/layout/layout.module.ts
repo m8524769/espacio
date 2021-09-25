@@ -20,7 +20,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LayoutComponent } from './layout.component';
 import { LibraryComponent } from './library/library.component';
-import { ContentsComponent } from './contents/contents.component';
+import { TocComponent } from './toc/toc.component';
 import { ContainerComponent } from './container/container.component';
 import { SettingsComponent } from './settings/settings.component';
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
@@ -32,7 +32,7 @@ import { SafePipe } from '../common/safe.pipe';
   declarations: [
     LayoutComponent,
     LibraryComponent,
-    ContentsComponent,
+    TocComponent,
     ContainerComponent,
     SettingsComponent,
     DropZoneComponent,

@@ -56,7 +56,7 @@
     >
       <mat-toolbar></mat-toolbar>
       <app-library *ngIf="!isBookOpened"></app-library>
-      <app-contents [hidden]="!isBookOpened"></app-contents>
+      <app-toc [hidden]="!isBookOpened"></app-toc>
     </mat-sidenav>
 
     <mat-sidenav-content
