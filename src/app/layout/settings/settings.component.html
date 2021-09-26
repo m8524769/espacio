@@ -1,125 +1,127 @@
-<mat-form-field class="settings-form">
-  <mat-label>Theme</mat-label>
-  <mat-select
-    #setTheme
-    [value]="settingsService.theme$ | async"
-    (selectionChange)="changeTheme(setTheme.value)"
-  >
-    <mat-option
-      *ngFor="let option of themeOptions"
-      [value]="option.value"
-    >
-      {{ option.displayValue }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="settings-form-container">
+  <form class="settings-form">
+    <mat-form-field>
+      <mat-label>Theme</mat-label>
+      <mat-select
+        #setTheme
+        [value]="settingsService.theme$ | async"
+        (selectionChange)="changeTheme(setTheme.value)"
+      >
+        <mat-option
+          *ngFor="let option of themeOptions"
+          [value]="option.value"
+        >
+          {{ option.displayValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-<mat-form-field class="settings-form">
-  <mat-label>Font family</mat-label>
-  <input matInput
-    #setFontFamily
-    [value]="settingsService.fontFamily$ | async"
-    (keyup)="changeFontFamily(setFontFamily.value)"
-    [matAutocomplete]="fontFamilyAuto"
-  >
-  <mat-autocomplete
-    #fontFamilyAuto="matAutocomplete"
-    (optionSelected)="changeFontFamily(setFontFamily.value)"
-  >
-    <mat-option
-      *ngFor="let option of fontFamilyOptions"
-      [value]="option.value"
-      [ngStyle]="{'font-family': option.value}"
-    >
-      {{ option.displayValue }}
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field>
+    <mat-form-field>
+      <mat-label>Font family</mat-label>
+      <input matInput
+        #setFontFamily
+        [value]="settingsService.fontFamily$ | async"
+        (keyup)="changeFontFamily(setFontFamily.value)"
+        [matAutocomplete]="fontFamilyAuto"
+      >
+      <mat-autocomplete
+        #fontFamilyAuto="matAutocomplete"
+        (optionSelected)="changeFontFamily(setFontFamily.value)"
+      >
+        <mat-option
+          *ngFor="let option of fontFamilyOptions"
+          [value]="option.value"
+          [ngStyle]="{'font-family': option.value}"
+        >
+          {{ option.displayValue }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
 
-<mat-form-field class="settings-form">
-  <mat-label>Font size</mat-label>
-  <input matInput
-    #setFontSize
-    [value]="settingsService.fontSize$ | async"
-    (keyup)="changeFontSize(setFontSize.value)"
-    [matAutocomplete]="fontSizeAuto"
-  >
-  <mat-autocomplete
-    #fontSizeAuto="matAutocomplete"
-    (optionSelected)="changeFontSize(setFontSize.value)"
-  >
-    <mat-option
-      *ngFor="let option of fontSizeOptions"
-      [value]="option.value"
-      [ngStyle]="{
-        'font-family': setFontFamily.value,
-        'font-size': option.value
-      }"
-    >
-      {{ option.displayValue }}
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field>
+    <mat-form-field>
+      <mat-label>Font size</mat-label>
+      <input matInput
+        #setFontSize
+        [value]="settingsService.fontSize$ | async"
+        (keyup)="changeFontSize(setFontSize.value)"
+        [matAutocomplete]="fontSizeAuto"
+      >
+      <mat-autocomplete
+        #fontSizeAuto="matAutocomplete"
+        (optionSelected)="changeFontSize(setFontSize.value)"
+      >
+        <mat-option
+          *ngFor="let option of fontSizeOptions"
+          [value]="option.value"
+          [ngStyle]="{
+            'font-family': setFontFamily.value,
+            'font-size': option.value
+          }"
+        >
+          {{ option.displayValue }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
 
-<mat-form-field class="settings-form">
-  <mat-label>Font weight</mat-label>
-  <input matInput
-    #setFontWeight
-    [value]="settingsService.fontWeight$ | async"
-    (keyup)="changeFontWeight(setFontWeight.value)"
-    [matAutocomplete]="fontWeightAuto"
-  >
-  <mat-autocomplete
-    #fontWeightAuto="matAutocomplete"
-    (optionSelected)="changeFontWeight(setFontWeight.value)"
-  >
-    <mat-option
-      *ngFor="let option of fontWeightOptions"
-      [value]="option.value"
-      [ngStyle]="{
-        'font-family': setFontFamily.value,
-        'font-weight': option.value
-      }"
-    >
-      {{ option.displayValue }}
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field>
+    <mat-form-field>
+      <mat-label>Font weight</mat-label>
+      <input matInput
+        #setFontWeight
+        [value]="settingsService.fontWeight$ | async"
+        (keyup)="changeFontWeight(setFontWeight.value)"
+        [matAutocomplete]="fontWeightAuto"
+      >
+      <mat-autocomplete
+        #fontWeightAuto="matAutocomplete"
+        (optionSelected)="changeFontWeight(setFontWeight.value)"
+      >
+        <mat-option
+          *ngFor="let option of fontWeightOptions"
+          [value]="option.value"
+          [ngStyle]="{
+            'font-family': setFontFamily.value,
+            'font-weight': option.value
+          }"
+        >
+          {{ option.displayValue }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
 
-<br />
+    <mat-form-field>
+      <mat-label>Line height</mat-label>
+      <input matInput
+        #setLineHeight
+        [value]="settingsService.lineHeight$ | async"
+        (keyup)="changeLineHeight(setLineHeight.value)"
+      >
+    </mat-form-field>
 
-<mat-form-field class="settings-form">
-  <mat-label>Line height</mat-label>
-  <input matInput
-    #setLineHeight
-    [value]="settingsService.lineHeight$ | async"
-    (keyup)="changeLineHeight(setLineHeight.value)"
-  >
-</mat-form-field>
+    <mat-form-field>
+      <mat-label>Letter spacing</mat-label>
+      <input matInput
+        #setLetterSpacing
+        [value]="settingsService.letterSpacing$ | async"
+        (keyup)="changeLetterSpacing(setLetterSpacing.value)"
+      >
+    </mat-form-field>
 
-<mat-form-field class="settings-form">
-  <mat-label>Letter spacing</mat-label>
-  <input matInput
-    #setLetterSpacing
-    [value]="settingsService.letterSpacing$ | async"
-    (keyup)="changeLetterSpacing(setLetterSpacing.value)"
-  >
-</mat-form-field>
+    <mat-form-field>
+      <mat-label>Font size adjust</mat-label>
+      <input matInput
+        #setFontSizeAdjust
+        [value]="settingsService.fontSizeAdjust$ | async"
+        (keyup)="changeFontSizeAdjust(setFontSizeAdjust.value)"
+      >
+    </mat-form-field>
 
-<mat-form-field class="settings-form">
-  <mat-label>Font size adjust</mat-label>
-  <input matInput
-    #setFontSizeAdjust
-    [value]="settingsService.fontSizeAdjust$ | async"
-    (keyup)="changeFontSizeAdjust(setFontSizeAdjust.value)"
-  >
-</mat-form-field>
-
-<mat-form-field class="settings-form">
-  <mat-label>Drop caps</mat-label>
-  <input matInput
-    #setDropCaps
-    [value]="settingsService.dropCaps$ | async"
-    (keyup)="changeDropCaps(setDropCaps.value)"
-  >
-</mat-form-field>
+    <mat-form-field>
+      <mat-label>Drop caps</mat-label>
+      <input matInput
+        #setDropCaps
+        [value]="settingsService.dropCaps$ | async"
+        (keyup)="changeDropCaps(setDropCaps.value)"
+      >
+    </mat-form-field>
+  </form>
+</div>

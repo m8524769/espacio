@@ -1,2 +1,12 @@
+.settings-form-container
+  display: flex
+  justify-content: center
+
 .settings-form
-  width: calc(700px / 4)
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  max-width: 700px
+  margin-top: 5px
+
+  mat-form-field
+    width: calc(700px / 4)

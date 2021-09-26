@@ -20,7 +20,7 @@ export class ContainerComponent implements OnInit, OnDestroy {
   clientX: number = 0;
   clientY: number = 0;
 
-  componentDestroyed$: Subject<void> = new Subject();
+  destroyed$: Subject<void> = new Subject();
 
   constructor(
     private epubService: EpubService,
@@ -53,51 +53,51 @@ export class ContainerComponent implements OnInit, OnDestroy {
     // Set Style
     // Theme
     this.settingsService.theme$.pipe(
-      takeUntil(this.componentDestroyed$),
+      takeUntil(this.destroyed$),
     ).subscribe(theme => {
       this.epubService.rendition.themes.register(theme, './assets/themes.css');
       this.epubService.rendition.themes.select(theme);
     });
     // Font-Family
     this.settingsService.fontFamily$.pipe(
-      takeUntil(this.componentDestroyed$),
+      takeUntil(this.destroyed$),
     ).subscribe(fontFamily => {
       this.epubService.rendition.themes.font(fontFamily);
     });
     // Font-Size
     this.settingsService.fontSize$.pipe(
-      takeUntil(this.componentDestroyed$),
+      takeUntil(this.destroyed$),
     ).subscribe(fontSize => {
       this.epubService.rendition.themes.fontSize(fontSize);
     });
     // Font-Width
     this.settingsService.fontWeight$.pipe(
-      takeUntil(this.componentDestroyed$),
+      takeUntil(this.destroyed$),
     ).subscribe(fontWeight => {
       this.epubService.rendition.themes.override('font-weight', fontWeight);
     });
     // Line-Height
     this.settingsService.lineHeight$.pipe(
-      takeUntil(this.componentDestroyed$),
+      takeUntil(this.destroyed$),
     ).subscribe(lineHeight => {
       this.epubService.rendition.themes.override('line-height', lineHeight);
     });
     // Letter-Spacing
     this.settingsService.letterSpacing$.pipe(
-      takeUntil(this.componentDestroyed$),
+      takeUntil(this.destroyed$),
     ).subscribe(letterSpacing => {
       this.epubService.rendition.themes.override('letter-spacing', letterSpacing);
     });
     // Font-Size-Adjust
     this.settingsService.fontSizeAdjust$.pipe(
-      takeUntil(this.componentDestroyed$),
+      takeUntil(this.destroyed$),
     ).subscribe(fontSizeAdjust => {
       this.epubService.rendition.themes.override('font-size-adjust', fontSizeAdjust);
     });
     // Drop-Caps
     this.epubService.rendition.hooks.content.register((content: Contents) => {
       this.settingsService.dropCaps$.pipe(
-        takeUntil(this.componentDestroyed$),
+        takeUntil(this.destroyed$),
       ).subscribe(dropCaps => {
         if (Number(dropCaps) > 1) {
           const dropCapsPercentage = `${Number(dropCaps) * 100}%`;
@@ -212,8 +212,8 @@ export class ContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.componentDestroyed$.next();
-    this.componentDestroyed$.complete();
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
 }

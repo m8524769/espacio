@@ -31,7 +31,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   isDarkMode: boolean = false;
   isHeaderHovered: boolean = false;
 
-  componentDestroyed$: Subject<void> = new Subject();
+  destroyed$: Subject<void> = new Subject();
 
   constructor(
     private epubService: EpubService,
@@ -45,21 +45,21 @@ export class LayoutComponent implements OnInit, OnDestroy {
     });
 
     this.epubService.currentNavItem$.pipe(
-      takeUntil(this.componentDestroyed$),
+      takeUntil(this.destroyed$),
     ).subscribe(navItem => {
       this.currentNavItem = navItem;
     });
 
     this.settingsService.theme$.pipe(
-      takeUntil(this.componentDestroyed$),
+      takeUntil(this.destroyed$),
     ).subscribe(theme => {
       this.isDarkMode = (theme === 'dark');
     });
   }
 
   ngOnDestroy(): void {
-    this.componentDestroyed$.next();
-    this.componentDestroyed$.complete();
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
   toggleDarkMode(): void {
