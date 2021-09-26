@@ -2,13 +2,13 @@
   *ngIf="!(loading$ | async); else spinner"
   class="drop-zone"
   (click)="fileInput.click()"
-  (onFileDropped)="openEpubFile($event)"
+  (fileDropped)="openEpubFile($event)"
 >
   <h1>DROP EPUB HERE</h1>
   <input #fileInput
     type="file"
     accept=".epub,.epub3,.opf"
-    (change)="openEpubFile($event.target.files)"
+    (change)="openEpubFile($any($event).target.files.item(0))"
     hidden
   >
 </div>
