@@ -133,6 +133,7 @@
   },
   "defaultProject": "espacio",
   "cli": {
+    "packageManager": "npm",
     "defaultCollection": "@angular-eslint/schematics"
   }
 }
