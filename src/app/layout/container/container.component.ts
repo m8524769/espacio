@@ -17,8 +17,6 @@ import { ImageViewerComponent } from '../image-viewer/image-viewer.component';
 })
 export class ContainerComponent implements OnInit, OnDestroy {
   epubContainer: HTMLElement;
-  clientX: number = 0;
-  clientY: number = 0;
 
   destroyed$: Subject<void> = new Subject();
 
@@ -159,12 +157,6 @@ export class ContainerComponent implements OnInit, OnDestroy {
 
       // Listen to the pointer location in the rendition
       const docElement = this.epubService.rendition.getContents()[0].documentElement as HTMLElement;
-      docElement.addEventListener('mouseup', event => {
-        const offsetX = this.epubContainer.firstElementChild.getBoundingClientRect().left;  // epub-view
-        const offsetY = this.epubContainer.scrollTop;
-        this.clientX = event.clientX + offsetX;
-        this.clientY = event.clientY - offsetY + 64;  // Height of header is 64px
-      });
 
       // Make <iframe> over the highlight <svg>
       const iframe = this.epubContainer.firstElementChild.firstElementChild as HTMLElement;
@@ -172,10 +164,9 @@ export class ContainerComponent implements OnInit, OnDestroy {
       iframe.style.zIndex = '1';
 
       // Add click event listener to all images
-      const images = docElement.getElementsByTagName('img');
-      for (let i = 0; i < images.length; ++i) {
-        const image = images.item(i);
-        image.addEventListener('click', event => {
+      const imageElements = docElement.getElementsByTagName('img');
+      for (let i = 0; i < imageElements.length; ++i) {
+        imageElements.item(i).addEventListener('click', event => {
           this.zone.run(() => {
             this.dialog.open(ImageViewerComponent, {
               data: { imageElement: event.target as HTMLImageElement }
@@ -183,31 +174,6 @@ export class ContainerComponent implements OnInit, OnDestroy {
           });
         });
       }
-    });
-
-    this.epubService.rendition.on('selected', (cfirange: string, contents: Contents) => {
-      return;  // Use hypothes.is instead
-      // Copy the selected content from the <iframe> to an outside element
-      const epubSelection: Selection = contents.window.getSelection();
-      const agent: HTMLElement = document.getElementById('epubSelection');
-      agent.innerText = epubSelection.toString();
-
-      // Clean any current selection
-      const selection: Selection = window.getSelection();
-      selection.removeAllRanges();
-
-      // Select the outside element
-      const range: Range = new Range();
-      range.selectNodeContents(agent);
-      selection.addRange(range);
-
-      // Trigger a mouseup event manually
-      agent.dispatchEvent(new MouseEvent('mouseup', {
-        bubbles: true,
-        cancelable: true,
-        clientX: this.clientX,
-        clientY: this.clientY,
-      }));
     });
   }
 

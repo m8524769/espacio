@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { EpubService } from 'src/app/shared/epub.service';
 import { Subject, zip } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
