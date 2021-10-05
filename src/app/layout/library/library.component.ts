@@ -3,6 +3,8 @@ import { EpubService } from 'src/app/shared/epub.service';
 import { Subject, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 @Component({
   selector: 'app-library',
   templateUrl: './library.component.html',
@@ -27,7 +29,7 @@ export class LibraryComponent implements OnInit {
           this.searchResults = this.books = books.reverse();
           this.searchTerm$.subscribe(term => {
             this.searchResults = this.books.filter(book =>
-              book.metadata.title.search(new RegExp(term, "i")) !== -1
+              new RegExp(escapeRegExp(term), 'i').test(book.metadata.title)
             );
           });
         });
