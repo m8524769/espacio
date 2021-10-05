@@ -13,13 +13,20 @@
 <body style="margin: 0;">
   <app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
-  <script type="application/json" class="js-hypothesis-config">
-    {
-      "theme": "clean",
-      "enableExperimentalNewNoteButton": false
-    }
-  </script>
   <script src="https://hypothes.is/embed.js" async=""></script>
-<script src="runtime-es2015.dcea3fa2638f0dcd45f4.js" type="module"></script><script src="runtime-es5.dcea3fa2638f0dcd45f4.js" nomodule defer></script><script src="polyfills-es5.46c1670d01e554884f69.js" nomodule defer></script><script src="polyfills-es2015.d37102de4e8bbeeb870c.js" type="module"></script><script src="main-es2015.f60ffabf0f8ef13ab573.js" type="module"></script><script src="main-es5.f60ffabf0f8ef13ab573.js" nomodule defer></script>
+  <script>
+    window.hypothesisConfig = function () {
+      return {
+        theme: "clean",
+        enableExperimentalNewNoteButton: true,
+        branding: {
+          appBackgroundColor: "#f5f5f5",
+          selectionFontFamily: "Roboto, \"Helvetica Neue\", sans-serif",
+          annotationFontFamily: "Roboto, \"Helvetica Neue\", sans-serif"
+        }
+      };
+    };
+  </script>
+<script src="runtime-es2015.dcea3fa2638f0dcd45f4.js" type="module"></script><script src="runtime-es5.dcea3fa2638f0dcd45f4.js" nomodule defer></script><script src="polyfills-es5.46c1670d01e554884f69.js" nomodule defer></script><script src="polyfills-es2015.d37102de4e8bbeeb870c.js" type="module"></script><script src="main-es2015.e71539f1c35e8a183c1f.js" type="module"></script><script src="main-es5.e71539f1c35e8a183c1f.js" nomodule defer></script>
 
 </body></html>
