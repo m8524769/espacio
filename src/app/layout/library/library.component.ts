@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, } from '@angular/core';
 import { EpubService } from 'src/app/shared/epub.service';
 import { Subject, zip } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 
 const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -10,11 +10,13 @@ const escapeRegExp = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   templateUrl: './library.component.html',
   styleUrls: ['./library.component.sass'],
 })
-export class LibraryComponent implements OnInit {
+export class LibraryComponent implements OnInit, OnDestroy {
   books: any[] = [];
   selected: boolean = false;
   searchTerm$: Subject<string> = new Subject();
   searchResults: any[] = [];
+
+  destroy$: Subject<void> = new Subject();
 
   constructor(
     private epubService: EpubService,
@@ -27,7 +29,9 @@ export class LibraryComponent implements OnInit {
           key => cache.match(key).then(response => response.json())
         )).then(books => {
           this.searchResults = this.books = books.reverse();
-          this.searchTerm$.subscribe(term => {
+          this.searchTerm$.pipe(
+            takeUntil(this.destroy$),
+          ).subscribe(term => {
             this.searchResults = this.books.filter(book =>
               new RegExp(escapeRegExp(term), 'i').test(book.metadata.title)
             );
@@ -54,6 +58,11 @@ export class LibraryComponent implements OnInit {
         }));
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   selectBook(fileName: string): void {
