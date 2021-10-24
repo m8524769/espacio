@@ -9,7 +9,7 @@
   <a href="https://app.netlify.com/sites/espacio/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/0ec8510a-ab73-4c99-98c0-1d77c2e8fbfe/deploy-status" /></a>
 </div>
 
-<h2 align="center">Available Instances: <a href="https://m8524769.github.io/espacio/">Github Pages</a> | <a href="https://espacio.netlify.app/">Netlify</a></h2>
+<h2 align="center">Available Instances: <a href="https://m8524769.github.io/espacio/">Github Pages</a> | <a href="https://espacio.netlify.app/">Netlify</a> | <a href="https://espacio.vercel.app">Vercel</a></h2>
 
 <p align="center">You can also <a href="https://github.com/m8524769/espacio/discussions/19"><strong>Deploy your own ESPACIO</strong></a> to do some more deeper customization.</p>
 
