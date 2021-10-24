@@ -10,10 +10,12 @@ A local ePub reader for personal use.
 
 ![Showcase](./showcase.png)
 
-### Join the [Hypothesis](https://web.hypothes.is/) study group: [ESPACIO](https://hypothes.is/groups/w129oEZP/espacio)
+#### You can also [Deploy your own ESPACIO](https://github.com/m8524769/espacio/discussions/19) to do some more deeper customization.
 
 ## Font Recommendations
 
 - Serif: [Crimson Pro](https://github.com/Fonthausen/CrimsonPro)
 - Sans-serif: [Roboto](https://github.com/google/roboto)
 - Monospace: [Fira Code](https://github.com/tonsky/FiraCode)
+
+_Powered by [epub.js](https://github.com/futurepress/epub.js) and [Hypothesis](https://web.hypothes.is/)._
