@@ -7,6 +7,7 @@ import { NavItem } from 'epubjs/types/navigation';
 import { SettingsComponent } from './settings/settings.component';
 import { EpubService } from '../shared/epub.service';
 import { SettingsService } from '../shared/settings.service';
+import { ApiService } from '../shared/api.service';
 
 @Component({
   selector: 'app-layout',
@@ -37,9 +38,12 @@ export class LayoutComponent implements OnInit, OnDestroy {
     private epubService: EpubService,
     private settingsService: SettingsService,
     private bottomSheet: MatBottomSheet,
+    private api: ApiService,
   ) { }
 
   ngOnInit(): void {
+    this.api.getDate().subscribe(console.log);
+
     this.epubService.isBookOpened$.subscribe(() => {
       this.isBookOpened = true;
     });
