@@ -14,7 +14,12 @@
       <mat-icon>{{ sidebar.opened ? 'arrow_back' : 'menu' }}</mat-icon>
     </button>
 
-    <div *ngIf="isHeaderHovered || sidebar.opened" [@fadeAnimation]>
+    <div
+      [ngStyle]="{
+        'opacity': (isHeaderHovered || sidebar.opened) ? '1' : '0',
+        'transition': 'opacity 0.1s'
+      }"
+    >
       <button mat-button (click)="toggleDarkMode()">
         <mat-icon>{{ isDarkMode ? 'wb_sunny' : 'bedtime' }}</mat-icon>
       </button>

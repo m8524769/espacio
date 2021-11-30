@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NavItem } from 'epubjs/types/navigation';
@@ -12,18 +11,6 @@ import { SettingsService } from '../shared/settings.service';
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.sass'],
-  animations: [
-    trigger('fadeAnimation', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('0.1s ease-out', style({ opacity: 1 })),
-      ]),
-      transition(':leave', [
-        style({ opacity: 1 }),
-        animate('0.1s ease-in', style({ opacity: 0 })),
-      ]),
-    ]),
-  ],
 })
 export class LayoutComponent implements OnInit, OnDestroy {
   currentNavItem: NavItem;
@@ -71,6 +58,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   openSettings(): void {
-    this.bottomSheet.open(SettingsComponent);
+    this.bottomSheet.open(SettingsComponent, {
+      restoreFocus: false,
+    });
   }
 }
