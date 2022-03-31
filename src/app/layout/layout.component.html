@@ -16,6 +16,7 @@
 
     <div
       [ngStyle]="{
+        'margin-right': '16px',
         'opacity': (isHeaderHovered || sidebar.opened) ? '1' : '0',
         'transition': 'opacity 0.1s'
       }"
@@ -33,6 +34,8 @@
     <h2
       [ngStyle]="{
         'padding-right.rem': 1,
+        'overflow': 'hidden',
+        'text-overflow': 'ellipsis',
         'opacity': (isHeaderHovered || sidebar.opened) ? '1' : '0',
         'transition': 'opacity 0.1s'
       }"
